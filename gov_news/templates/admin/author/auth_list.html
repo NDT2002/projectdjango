@@ -1,0 +1,63 @@
+{% extends 'admin/base.html' %} {% load static %} {% load i18n admin_urls admin_list %} 
+{% block title %}Tác giả{% endblock title %}
+{% block contentwrapper %}
+<!-- Content Header (Page header) -->
+<div class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1 class="m-0 text-dark">
+          Danh Sách Tác Giả <a href="{% url 'create_author' %}"><i class="bi bi-file-plus text-primary"></i></a>
+        </h1>
+      </div>
+
+      <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+          <li class="breadcrumb-item"><a href="#">Home</a></li>
+        </ol>
+      </div>
+      <!-- /.col -->
+    </div>
+    <!-- /.row -->
+  </div>
+  <!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+<!-- Main content -->
+<section class="content row mr-0">
+  {% for auth in author_data_list %}
+  <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch">
+    <div class="card bg-light">
+      <div class="card-header text-muted border-bottom-0">Tác giả</div>
+      <div class="card-body pt-0">
+        <div class="row">
+          <div class="col-7">
+            <h2 class="lead"><b>{{ auth.author.user_nicename }}</b></h2>
+            <p class="text-muted text-sm"><b>Job:</b>{{ auth.extended_data.job }}</p>
+            <p class="text-muted text-sm"><b>Description:</b> {{ auth.extended_data.description }}</p>
+            <ul class="ml-2 mb-0 fa-ul text-muted list-unstyled ">
+              <li class="small">
+                <span class="fa-li"><i class="fas fa-lg fa-building"></i></span> Address: {{ auth.extended_data.address }}
+              </li>
+              <li class="small">
+                <span class="fa-li"><i class="fas fa-lg fa-phone"></i></span> Phone:{{ auth.extended_data.phone }}
+              </li>
+            </ul>
+          </div>
+          <div class="col-5 text-center">
+            <img src="../../dist/img/user1-128x128.jpg" alt="" class="img-circle img-fluid" />
+          </div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <div class="text-right">
+          <a href="#" class="btn btn-sm btn-primary"> <i class="fas fa-user"></i> Xem chi tiết </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</section>
+
+
+{% endblock contentwrapper %}

@@ -1,0 +1,192 @@
+{% extends "admin/base.html" %} {% load static %} {% load i18n admin_urls admin_list %} {% block title %}Tạo bài viết mới{% endblock title %} {% block pagecss %}
+<script src="{% static 'ckeditor/ckeditor/ckeditor.js' %}"></script>
+<link rel="stylesheet" type="text/css" href="{% static 'ckeditor/ckeditor/content.css' %}" />
+{% endblock pagecss %} {% block contentwrapper %}
+  <!-- Content Header (Page header) -->
+  <div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1 class="m-0 text-dark">Tin Tức</h1>
+        </div>
+
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="{% url 'admin:index' %}">Home</a>>><a href="{% url 'post' %}">Tin tức</a></li>
+          </ol>
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+  </div>
+  <!-- /.content-header -->
+  <!-- Main content -->
+  <section class="content">
+    <!-- general form elements disabled -->
+    <div class="card card-warning">
+      <div class="card-header">
+        <h3 class="card-title">Thêm Mới Tin Tức</h3>
+      </div>
+      <!-- /.card-header -->
+      <div class="card-body">
+        <form method="post" action="{% url 'add_post' %}" enctype="multipart/form-data">
+          {% csrf_token %}
+          {% if form.errors %}
+              <div class="alert alert-danger">
+                  <strong>Có lỗi xảy ra:</strong>
+                  <ul>
+                    {% for field, errors in form.errors.items %}
+                    {% for error in errors %}
+                        <li>{{field }}: {{ error }}</li>
+                    {% endfor %}
+                    {% endfor %}
+                  </ul>
+              </div>
+          {% endif %}
+          <div class="row">
+            <div class="col-sm-6">
+              <label>Tác giả/Người viết:</label>
+              <input value="{{ request.user.display_name }}" disabled class="form-control input-box" />
+              <input type="hidden" name="post_author" value="{{ request.user.id }}" />
+            </div>
+            <div class="col-sm-6">
+              <label>Ngày đăng:</label>
+              <input value='{% now "Y-m-d H:i:s" %}' class="form-control input-box" type="datetime-local" id="publish_date" name="post_date" />
+            </div>
+            <div class="col-sm-6">
+              <!-- select -->
+              <div class="form-group">
+                <label>Loại bài viết</label>
+                <select class="form-control input-box" name="post_type">
+                  <option value="article">Bài viết (Article)</option>
+                  <option value="homepage-post">Bài viết trang chủ (Homepage Post)</option>
+                  <option value="summary-post">Bài viết tóm tắt (Summary Post)</option>
+                  <option value="video-post">Bài viết video (Video Post)</option>
+                  <option value="image-post">Bài viết hình ảnh (Image Post)</option>
+                  <option value="audio-post">Bài viết âm thanh (Audio Post)</option>
+                  <option value="gallery-post">Bài viết thư viện (Gallery Post)</option>
+                  <option value="review-post">Bài viết đánh giá (Review Post)</option>
+                  <option value="analysis-post">Bài viết phân tích (Analysis Post)</option>
+                  <option value="opinion-post">Bài viết chia sẻ ý kiến (Opinion Post)</option>
+                  <!-- Thêm các giá trị khác tùy theo nhu cầu của bạn -->
+                </select>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <!-- select -->
+              <div class="form-group">
+                <label>Danh mục</label>
+                <select class="form-control input-box" name="taxonomies">
+                  {% for tt in taxonomies %}
+                  <option value="{{tt.id}}">{{tt.term_id.name}} - {{tt.taxonomy}}</option>
+                  {% endfor %}
+
+                  <!-- Thêm các giá trị khác tùy theo nhu cầu của bạn -->
+                </select>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <!-- select -->
+              <div class="form-group ">
+                <label>Trạng thái</label>
+                <select class="form-control input-box" name="post_status">
+                  <option value="draft">Nháp</option>
+                  <option value="pending_review">Chờ Duyệt</option>
+                  <option value="published">Đã Xuất Bản</option>
+                  <option value="private">Riêng Tư</option>
+                  <option value="archived">Lưu Trữ</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-sm-12">
+              <!-- text input -->
+              <div class="form-group">
+                <label>Liên kết tĩnh: <span class='text-danger'>(*)</span></label>
+                <input type="text" class="form-control input-box" name="post_name" value="{% url 'news_list' %}/" placeholder="Enter ..." />
+                <div class="progress" style='height:.5rem'>
+                  <div class="progress-bar" id="post_name_progress" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-12">
+              <!-- text input -->
+              <div class="form-group">
+                <label>Tiêu Đề:<span class='text-danger'>(*)</span></label>
+                <input type="text" class="form-control input-box" name="post_title" placeholder="Enter ..." />
+                <div class="progress" style='height:.5rem'>
+                  <div class="progress-bar" id="post_title_progress" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+              </div>
+            </div>
+            <div class="col-sm-12 form-group">
+              <label class="col-form-label" for="post_excerpt">Trích dẫn:<span class='text-danger'>(*)</span></label>
+              <textarea class="form-control input-box" rows="3" id=" post_excerpt" name="post_excerpt" placeholder="Enter ..."></textarea>
+              <div class="progress" style='height:.5rem'>
+                <div class="progress-bar" id="post_excerpt_progress" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+            </div>
+            <div class="col-sm-12">
+              <!-- text input -->
+              <div class="form-group">
+                <label>Nội Dung:<span class='text-danger'>(*)</span></label>
+                <textarea class="textarea" id="content" name="post_content" placeholder="Place some text here"></textarea>
+              </div>
+            </div>
+            <div class="col-sm-12 form-group">
+              <label class="col-form-label" for="image">Hình ảnh đại diện:</label>
+              <div class=" d-flex align-items-center">
+                <label class="picture" for="post_image" tabindex="0">
+                  <span class="picture_image"></span>
+                </label>
+                <input hidden type="file" name="post_image" class="form-control-file" id="post_image" multiple />
+              </div>
+            </div>
+          </div>
+          <div class="card-footer d-flex justify-content-end mr-4">
+            <button type="submit" class="btn btn-primary mr-4">Lưu</button>
+            <button type="button" class="btn btn-danger">Hủy</button>
+          </div>
+        </form>
+      </div>
+      <!-- /.card-body -->
+    </div>
+    <!-- /.card -->
+  </section>
+{% endblock contentwrapper %} {% block pagescripts %}
+<script>
+  CKEDITOR.replace("content");
+  const inputFile = document.querySelector("#post_image");
+  const productImage = document.querySelector(".picture_image");
+  const pictureImageTxt = "Chọn ảnh mới";
+  productImage.innerHTML = pictureImageTxt;
+
+  inputFile.addEventListener("change", function (e) {
+    const inputTarget = e.target;
+    const file = inputTarget.files[0];
+
+    if (file) {
+      const reader = new FileReader();
+
+      reader.addEventListener("load", function (e) {
+        const readerTarget = e.target;
+
+        const img = document.createElement("img");
+        img.src = readerTarget.result;
+        img.classList.add("picture_img");
+
+        productImage.innerHTML = "";
+        productImage.appendChild(img);
+      });
+
+      reader.readAsDataURL(file);
+    } else {
+      productImage.innerHTML = pictureImageTxt;
+    }
+  });
+
+  
+</script>
+<script src="{% static 'js/pages/post.js' %}"></script>
+{% endblock pagescripts %}

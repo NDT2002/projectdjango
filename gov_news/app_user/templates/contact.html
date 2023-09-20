@@ -1,0 +1,204 @@
+{% extends 'base.html' %} {% load static %} 
+{% block title %}
+<title>{{ post.post_title }}</title>
+{% endblock title %}
+{% block content %}
+<section class="row m-0 new-detail">
+  <div class="col-md-2 col-12 aside-left mt-2 p-0">
+    <div class="col-left mb-2">
+      <div class="title-top">
+        <p>Giới thiệu</p>
+      </div>
+      <div class="list-left">
+        <ul>
+          <li>
+            <a href="#">Giới thiệu chung</a>
+          </li>
+          <li>
+            <a href="#">Lịch sử văn hoá</a>
+          </li>
+          <li>
+            <a href="#">Thắng cảnh - du lịch</a>
+          </li>
+          <li>
+            <a href="#">Điều kiện tự nhiên</a>
+          </li>
+        </ul>
+      </div>
+      <a href="#"> <img class="d-block w-100" src="{% static 'img/ubnd.jpg' %}" alt="col-left img" /> </a>
+    </div>
+
+    <div class="col-left mb-2">
+      <div class="title-top">
+        <p>Lấy ý kiến góp ý</p>
+      </div>
+      <div class="list-left">
+        <ul>
+          <li>
+            <a href="#">Góp ý dự thảo văn bản quy phạm pháp luật</a>
+          </li>
+          <li>
+            <a href="#">Góp ý các quy định hành chính</a>
+          </li>
+          <li>
+            <a href="#">Hỏi & đáp</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="col-left mb-2">
+      <div class="title-top">
+        <p>Hệ thống văn bản</p>
+      </div>
+      <div class="list-left">
+        <ul>
+          <li>
+            <a href="#">Văn bản chỉ đạo điều hành</a>
+          </li>
+          <li>
+            <a href="#">Văn bản quy phạm pháp luật</a>
+          </li>
+          <li>
+            <a href="#">Công báo</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="col-left mb-2">
+      <div class="title-top">
+        <p>Báo cáo, thống kê</p>
+      </div>
+      <div class="list-left">
+        <ul>
+          <li>
+            <a href="#">Thông tin Kinh tế - Xã hội</a>
+          </li>
+          <li>
+            <a href="#">Chỉ số giá tiêu dùng</a>
+          </li>
+          <li>
+            <a href="#">Một số chỉ tiêu chủ yếu</a>
+          </li>
+          <li>
+            <a href="#">Số liệu vốn đầu tư</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-8 col-12 mt-2">
+    <div class="news-main">
+      <div class="title-detail">
+        <p class="text-uppercase p-2">Thông tin liên hệ</p>
+      </div>
+      <div class="content-detail px-3 pb-2">
+        TRANG THÔNG TIN ĐIỆN TỬ PHỔ BIẾN GIÁO DỤC PHÁP LUẬT TỈNH ĐẮK NÔNG
+        <div class="header-title ">
+          <div class="top-panel pl-2 text-muted">
+            Giấy phép số 08/GP-STTTT, ngày 26/05/2020 do Sở Thông tin và Truyền thông Tỉnh Đắk Nông cấp
+          </div>
+          <div class="second-contact text-justify">
+            <b>Cơ quan chủ quản:</b> Ủy ban Nhân dân Tỉnh Đắk Nông<br>
+            <b>Cơ quan Thường trực mạng:</b> Văn phòng Ủy ban nhân dân thành phố  <br>
+            <b>Địa chỉ: </b> Số 11, Đường Lê Duẩn, Phường Nghĩa Tân, Thành phố Gia Nghĩa, Tỉnh Đắk Nông<br>
+            <b>Điện thoại: </b> 02613.543140<br>
+            <b>Fax: </b> 02613.543140<br>
+            <b>Email: </b> banbientap.pbgdpl@gmail.com<br>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="map-contact" style="height: 50%;margin-top:25px;">
+      <iframe class="w-100 h-100" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d998021.404625172!2d107.00121124929389!3d12.280653076090852!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3173b5ece644a927%3A0x7530e130f4a387ad!2zxJDhuq9rIE7DtG5nLCBWaeG7h3QgTmFt!5e0!3m2!1svi!2s!4v1693060389894!5m2!1svi!2s" style="border: 0" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+
+
+  </div>
+  <div class="col-md-2 col-12 aside-right mt-2 p-0">
+    <div class="col-left mb-2">
+      <a href="#"> <img class="d-block w-100" src="{% static 'img/mapdaknong.jpg' %}" alt="col-left img" /> </a>
+      <div class="title-top">
+        <p>Quy hoạch, phát triển</p>
+      </div>
+      <div class="list-left">
+        <ul>
+          <li>
+            <a href="#">Chiến lược, định hướng, kế hoạch phát triển ngành </a>
+          </li>
+          <li>
+            <a href="#">Quy hoạch xây dựng </a>
+          </li>
+          <li>
+            <a href="#">Bản đồ quy hoạch đô thị </a>
+          </li>
+          <li>
+            <a href="#">Quy hoạch, kế hoạch sử dụng đất </a>
+          </li>
+          <li>
+            <a href="#">Quy hoạch thu gom, tái chế, xử lý chất thải</a>
+          </li>
+          <li>
+            <a href="#">Các khu vực có nguy cơ xảy ra ô nhiễm môi trường</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="col-left mb-2">
+      <div class="title-top">
+        <p>Thông tin, tuyên truyền</p>
+      </div>
+      <div class="list-left">
+        <ul>
+          <li>
+            <a href="#">Học và làm theo lời Bác </a>
+          </li>
+          <li>
+            <a href="#">Chế độ, chính sách mới </a>
+          </li>
+          <li>
+            <a href="#">Tuyên truyền phổ biến pháp luật về Khiếu nại tố cáo </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="col-left mb-2">
+      <div class="title-top">
+        <p>Chỉ đạo, điều hành</p>
+      </div>
+      <div class="list-left">
+        <ul>
+          <li>
+            <a href="#">Văn bản chỉ đạo điều hành</a>
+          </li>
+          <li>
+            <a href="#">Tin tức chỉ đạo điều hành </a>
+          </li>
+          <li>
+            <a href="#">Thông tin khen thưởng </a>
+          </li>
+          <li>
+            <a href="#">Lịch công tác của Thường trực UBND Thành phố </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="col-left mb-2">
+      <div class="title-top">
+        <p>An ninh trật tự</p>
+      </div>
+      <div class="list-left">
+        <ul>
+          <li>
+            <a href="#">An ninh trật tự</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock content %}

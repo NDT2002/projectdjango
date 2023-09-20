@@ -1,0 +1,390 @@
+{% extends 'base.html' %} {% load static %}
+{% block title %}
+<title>Trang chủ</title>
+{% endblock title %}
+{% block content %}
+
+<!-- menutop -->
+<section class="row topmenu m-0">
+  <div class="sidebar-top-left row m-0 mt-1 pb-1 justify-content-center">
+    <div class="menu-top col-12 col-lg-3 d-none d-md-block">
+      <span class="d-lg-none text-center font-weight-bold d-block text-danger top-menu-item">Danh mục</span>
+      <ul class="row m-0 sidebar-list text-md-center text-lg-left">
+        <li class="top-menu-item">
+          <div class="btn-group dropright">
+            <a href="#"> Tài liệu pbgdpl </a>
+          </div>
+        </li>
+        <li class="top-menu-item">
+          <div class="btn-group dropright">
+            <a href="#"> Truyền thông chính sách </a>
+          </div>
+        </li>
+        <li class="top-menu-item">
+          <div class="btn-group dropright">
+            <a href="#"> Thông tin chỉ đạo điều hành </a>
+          </div>
+        </li>
+        <li class="top-menu-item">
+          <div class="btn-group dropright">
+            <a href="#"> Hội đồng phối hợp PBGDPL </a>
+          </div>
+        </li>
+        <li class="top-menu-item">
+          <div class="btn-group dropright">
+            <a class="dropright" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Hướng dẫn nghiệp vụ </a>
+            <div class="dropdown-menu drop-setting" aria-labelledby="dropdownMenuLink">
+              <a class="dropdown-item" href="#">Hướng dẫn nghiệp vụ trung ương</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">Hướng dẫn nghiệp vụ địa phương</a>
+            </div>
+          </div>
+        </li>
+        <li class="top-menu-item">
+          <div class="btn-group dropright">
+            <a href="#"> Nghiên cứu trao đổi </a>
+          </div>
+        </li>
+        <li class="top-menu-item">
+          <div class="btn-group dropright">
+            <a href="#"> Hoà giải ở cơ sở </a>
+          </div>
+        </li>
+        <li class="top-menu-item">
+          <div class="btn-group dropright">
+            <a href="#"> Tiếp cận pháp luật </a>
+          </div>
+        </li>
+        <li class="top-menu-item">
+          <div class="btn-group dropright">
+            <a class="dropright" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Hỏi đáp tư vấn pháp luật </a>
+            <div class="dropdown-menu drop-setting" aria-labelledby="dropdownMenuLink">
+              <a class="dropdown-item" href="#">Hỏi đáp tư vấn pháp luật trung ương</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">Hỏi đáp tư vấn pháp luật địa phương</a>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="col-12 col-md-6 col-lg-5 carousel-top">
+      <div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="{% static 'user/img/carousel1.png' %}" class="d-block" alt="img carousel" />
+          </div>
+          <div class="carousel-item">
+            <img src="{% static 'user/img/carousel2.jpg' %}" class="d-block" alt="img carousel" />
+          </div>
+          <div class="carousel-item">
+            <img src="{% static 'user/img/carousel3.jpg' %}" class="d-block" alt="img carousel" />
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-target="#carouselExampleFade" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-target="#carouselExampleFade" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </button>
+      </div>
+    </div>
+    <div class="col-12 col-md-6 col-lg-4 hot-news">
+      <div class="title-top">
+        <p>Tin nổi bật</p>
+      </div>
+      <div class="top-news overflow-auto">
+        <ul class="h6">
+          <li>
+            <a class="" href="#"><i class="bi bi-arrow-right-circle-fill m-1"></i>Truyền thông chính sách: Một số điểm mới của Dự án Luật Công chứng (sửa đổi)</a>
+          </li>
+          <li>
+            <a class="" href="#"><i class="bi bi-arrow-right-circle-fill m-1"></i>Triển khai thực hiện liên thông điện tử đối với 02 nhóm thủ tục hành chính</a>
+          </li>
+          <li>
+            <a class="" href="#"><i class="bi bi-arrow-right-circle-fill m-1"></i>Hội Nông dân tỉnh Đắk Nông: RA MẮT CÂU LẠC BỘ “NÔNG DÂN VỚI PHÁP LUẬT” TẠI THỊ TRẤN EAT'LING</a>
+          </li>
+          <li>
+            <a class="" href="#"><i class="bi bi-arrow-right-circle-fill m-1"></i>Truyền thông chính sách: Một số điểm mới của Dự án Luật Công chứng (sửa đổi)</a>
+          </li>
+          <li>
+            <a class="" href="#"><i class="bi bi-arrow-right-circle-fill m-1"></i>Triển khai thực hiện liên thông điện tử đối với 02 nhóm thủ tục hành chính</a>
+          </li>
+          <li>
+            <a class="" href="#"><i class="bi bi-arrow-right-circle-fill m-1"></i>Hội Nông dân tỉnh Đắk Nông: RA MẮT CÂU LẠC BỘ “NÔNG DÂN VỚI PHÁP LUẬT” TẠI THỊ TRẤN EAT'LING</a>
+          </li>
+          <li>
+            <a class="" href="#"><i class="bi bi-arrow-right-circle-fill m-1"></i>Truyền thông chính sách: Một số điểm mới của Dự án Luật Công chứng (sửa đổi)</a>
+          </li>
+          <li>
+            <a class="" href="#"><i class="bi bi-arrow-right-circle-fill m-1"></i>Triển khai thực hiện liên thông điện tử đối với 02 nhóm thủ tục hành chính</a>
+          </li>
+          <li>
+            <a class="" href="#"><i class="bi bi-arrow-right-circle-fill m-1"></i>Hội Nông dân tỉnh Đắk Nông: RA MẮT CÂU LẠC BỘ “NÔNG DÂN VỚI PHÁP LUẬT” TẠI THỊ TRẤN EAT'LING</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-9 p-0 mt-1">
+    <div class="news m-0">
+      <div class="news-main">
+        <p class="title-top text-uppercase text-white font-weight-bold bg- p-1 mb-0">Hoạt động</p>
+        {% comment %} đây là code multi items {% endcomment %}
+
+        <div class="container text-center my-3">
+          <div class="row mx-auto my-auto justify-content-center">
+            <div id="recipeCarousel" class="carousel slide my-carousel" data-ride="carousel">
+              <div class="carousel-inner w-100" role="listbox">
+                <div class="carousel-item active">
+                  <div class="col-lg-2 col-md-3 col-sm-6 col-12 set-p-card">
+                    <div class="card">
+                      <img src="{% static 'user/img/card-image/img-card1.jpg' %}" class="card-img-top slide-card" alt="card img" />
+                      <div class="card-body">
+                        <a href="#">Điểm Mới Về Kinh Doanh Dịch Vụ Kiểm Định Xe Cơ Giới</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <div class="col-lg-2 col-md-3  set-p-card">
+                    <div class="card">
+                      <img src="{% static 'user/img/card-image/img-card2.jpeg' %}" class="card-img-top slide-card" alt="card img" />
+                      <div class="card-body">
+                        <a href="#">Mức chi kinh phí xây dựng phong trào toàn dân bảo vệ an ninh Tổ quốc</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <div class="col-lg-2 col-md-3  set-p-card">
+                    <div class="card">
+                      <img src="{% static 'user/img/card-image/img-card3.png' %}" class="card-img-top slide-card" alt="card img" />
+                      <div class="card-body">
+                        <a href="#"
+                          >Triển khai thực hiện liên thông điện tử đối với 02 nhóm thủ tục hành chính: Đăng ký khai sinh, đăng ký thường trú, cấp thẻ bảo hiểm y tế cho trẻ em dưới 6 tuổi; Đăng ký khai
+                          tử, xóa đăng ký thường trú, trợ cấp mai táng, hỗ trợ chi phí mai táng</a
+                        >
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <div class="col-lg-2 col-md-3  set-p-card">
+                    <div class="card">
+                      <img src="{% static 'user/img/card-image/img-card4.jpg' %}" class="card-img-top slide-card" alt="card img" />
+                      <div class="card-body">
+                        <a href="#">Hội Nông dân tỉnh Đắk Nông: RA MẮT CÂU LẠC BỘ “NÔNG DÂN VỚI PHÁP LUẬT” TẠI THỊ TRẤN EAT'LING</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <div class="col-lg-2 col-md-3  set-p-card">
+                    <div class="card">
+                      <img src="{% static 'user/img/card-image/img-card5.jpg' %}" class="card-img-top slide-card" alt="card img" />
+                      <div class="card-body">
+                        <a href="#">Đắk Glong: Tổ chức Hội nghị phổ biến một số Luật mới ban hành</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <div class="col-lg-2 col-md-3  set-p-card">
+                    <div class="card">
+                      <img src="{% static 'user/img/card-image/img-card5.jpg' %}" class="card-img-top slide-card" alt="card img" />
+                      <div class="card-body">
+                        <a href="#">Đắk Glong: Tổ chức Hội nghị phổ biến một số Luật mới ban hành</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <a class="carousel-control-prev bg-dark w-auto" href="#recipeCarousel" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+              </a>
+              <a class="carousel-control-next bg-dark w-auto" href="#recipeCarousel" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class=""></div>
+      </div>
+      <div class="blog-box mt-2">
+        <div class="row m-0">
+          <div class="col-md-6 p-0 mb-4 shadow-sm">
+            <div class="card w-100 h-auto">
+              <div class="card-header text-center">
+                <h6 class="title-top card-title text-justify bg-primary text-light p-2 w-100"><a class='link text-white' href="{% url 'news_list'  %}" >HOẠT ĐỘNG PBGDPL Ở ĐỊA PHƯƠNG</a></h6>
+                <a href="{% url 'news_list'  %}" ><img src="{% static 'user/img/carousel1.png'  %}" class="img-thumbnail w-100 mx-auto" alt="Image 1" /></a>
+              </div>
+              <div class="card-body h-auto card-blog">
+                <h6 class="title">HỘI NÔNG DÂN TỈNH ĐẮK NÔNG: RA MẮT CÂU LẠC BỘ “NÔNG DÂN VỚI PHÁP LUẬT” TẠI THỊ TRẤN EAT'LING</h6>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item pl-0 text-justify text-truncate">
+                    <a class="text-black" href="">Đắk Glong: Tổ chức Hội nghị phổ biến một số Luật mới ban hành</a>
+                  </li>
+                  <li class="list-group-item pl-0 text-justify text-truncate">
+                    <a class="text-black" href="">UBND Thành Phố Gia Nghĩa: Tổ Chức Hội Nghị Triển Khai, Phổ Biến Các Luật Mới Ban Hành</a>
+                  </li>
+                  <li class="list-group-item pl-0 text-justify text-truncate"><a class="text-black" href="">Tuyên truyền, phổ biến, giáo dục pháp luật tại huyện Đắk Mil </a></li>
+                  <li class="list-group-item pl-0 text-justify text-truncate">
+                    <a class="text-black" href="">Đắk Glong: Phối hợp tổ chức chương trình tuyên truyền phổ biến pháp luật và an toàn giao thông học đường tại huyện</a>
+                  </li>
+                  <li class="list-group-item pl-0 text-justify text-truncate">
+                    <a class="text-black" href="">Ban hành Kế hoạch hoạt động của Hội đồng phối hợp phổ biến, giáo dục pháp luật tỉnh Đắk Nông năm 2023</a>
+                  </li>
+                </ul>
+                <a href="{% url 'news_list'  %}" class="btn btn-danger float-right">Xem thêm>></a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 p-0 mb-4 shadow-sm">
+            <div class="card w-100 h-auto">
+              <div class="card-header text-center">
+                <h6 class="title-top card-title text-justify bg-primary text-light p-2">​​​ HỖ TRỢ PHÁP LÝ CHO DOANH NGHIỆP</h6>
+                <img src="{% static 'user/img/carousel1.png'  %}" class="img-thumbnail w-100 mx-auto" alt="Image 1" />
+              </div>
+              <div class="card-body h-auto card-blog">
+                <h6 class="title">HỖ TRỢ PHÁP LÝ DOANH NGHIỆP (GIÁ TRỊ PHÁP LÝ CỦA HỢP ĐỒNG THẾ CHẤP TRONG TRƯỜNG HỢP</h6>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item pl-0 text-justify text-truncate"><a class="text-black" href="">Điểm Mới Về Kinh Doanh Dịch Vụ Kiểm Định Xe Cơ Giới</a></li>
+                  <li class="list-group-item pl-0 text-justify text-truncate"><a class="text-black" href="">Một Số Vấn Đề Lưu Ý Khi Thành Lập Doanh Nghiệp</a></li>
+                  <li class="list-group-item pl-0 text-justify text-truncate">
+                    <a class="text-black" href="">Nâng cao chất lượng, hiệu quả công tác hỗ trợ pháp lý cho doanh nghiệp giai đoạn 2021-2030 trên địa bàn tỉnh Đắk Nông </a>
+                  </li>
+                  <li class="list-group-item pl-0 text-justify text-truncate"><a class="text-black" href="">Quy định về đăng ký hộ kinh doanh qua mạng thông tin điện tử</a></li>
+                  <li class="list-group-item pl-0 text-justify text-truncate"><a class="text-black" href="">Gia Hạn Thời Hạn Nộp Thuế, Tiền Thuê Đất Năm 2023</a></li>
+                </ul>
+                <a href="#" class="btn btn-danger float-right">Xem thêm>></a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 p-0 mb-4 shadow-sm">
+            <div class="card w-100 h-auto">
+              <div class="card-header">
+                <h6 class="title-top card-title text-justify bg-primary text-light p-2">HỖ TRỢ PHÁP LÝ CHO DOANH NGHIỆP</h6>
+                <img src="{% static 'user/img/carousel1.png'  %}" class="img-fluid w-100 mx-auto" alt="Image 1" />
+              </div>
+              <div class="card-body h-auto card-blog">
+                <h6 class="title">HỘI NÔNG DÂN TỈNH ĐẮK NÔNG: RA MẮT CÂU LẠC BỘ “NÔNG DÂN VỚI PHÁP LUẬT” TẠI THỊ TRẤN EAT'LING</h6>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item pl-0 text-justify text-truncate"><a class="text-black" href="">Điểm Mới Về Kinh Doanh Dịch Vụ Kiểm Định Xe Cơ Giới</a></li>
+                  <li class="list-group-item pl-0 text-justify text-truncate"><a class="text-black" href="">Một Số Vấn Đề Lưu Ý Khi Thành Lập Doanh Nghiệp</a></li>
+                  <li class="list-group-item pl-0 text-justify text-truncate">
+                    <a class="text-black" href="">Nâng cao chất lượng, hiệu quả công tác hỗ trợ pháp lý cho doanh nghiệp giai đoạn 2021-2030 trên địa bàn tỉnh Đắk Nông </a>
+                  </li>
+                  <li class="list-group-item pl-0 text-justify text-truncate"><a class="text-black" href="">Quy định về đăng ký hộ kinh doanh qua mạng thông tin điện tử</a></li>
+                  <li class="list-group-item pl-0 text-justify text-truncate"><a class="text-black" href="">Gia Hạn Thời Hạn Nộp Thuế, Tiền Thuê Đất Năm 2023</a></li>
+                </ul>
+                <a href="#" class="btn btn-danger float-right">Xem thêm>></a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 p-0 mb-4 shadow-sm">
+            <div class="card w-100 h-auto">
+              <div class="card-header">
+                <h6 class="title-top card-title text-justify bg-primary text-light p-2">HỖ TRỢ PHÁP LÝ CHO DOANH NGHIỆP</h6>
+                <img src="{% static 'user/img/carousel1.png'  %}" class="img-fluid w-100 mx-auto" alt="Image 1" />
+              </div>
+              <div class="card-body h-auto card-blog">
+                <h6 class="title">HỘI NÔNG DÂN TỈNH ĐẮK NÔNG: RA MẮT CÂU LẠC BỘ “NÔNG DÂN VỚI PHÁP LUẬT” TẠI THỊ TRẤN EAT'LING</h6>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item pl-0 text-justify text-truncate"><a class="text-black" href="">Điểm Mới Về Kinh Doanh Dịch Vụ Kiểm Định Xe Cơ Giới</a></li>
+                  <li class="list-group-item pl-0 text-justify text-truncate"><a class="text-black" href="">Một Số Vấn Đề Lưu Ý Khi Thành Lập Doanh Nghiệp</a></li>
+                  <li class="list-group-item pl-0 text-justify text-truncate">
+                    <a class="text-black" href="">Nâng cao chất lượng, hiệu quả công tác hỗ trợ pháp lý cho doanh nghiệp giai đoạn 2021-2030 trên địa bàn tỉnh Đắk Nông </a>
+                  </li>
+                  <li class="list-group-item pl-0 text-justify text-truncate"><a class="text-black" href="">Quy định về đăng ký hộ kinh doanh qua mạng thông tin điện tử</a></li>
+                  <li class="list-group-item pl-0 text-justify text-truncate"><a class="text-black" href="">Gia Hạn Thời Hạn Nộp Thuế, Tiền Thuê Đất Năm 2023</a></li>
+                </ul>
+                <a href="#" class="btn btn-danger float-right">Xem thêm>></a>
+              </div>
+            </div>
+          </div>
+          <!-- Add more blog cards here -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="d-none d-sm-block col-md-3 aside p-0 mt-1">
+    <a href="#"><img src="{% static 'user/img/img-aside/aside1.jpg' %}" alt="img aside" /></a>
+    <a href="#"><img src="{% static 'user/img/img-aside/aside2.jpg' %}" alt="img aside" /></a>
+    <a href="#"><img src="{% static 'user/img/img-aside/aside3.png' %}" alt="img aside" /></a>
+    <a href="#"><img src="{% static 'user/img/img-aside/aside4.png' %}" alt="img aside" /></a>
+    <a href="#"><img src="{% static 'user/img/img-aside/aside5.png' %}" alt="img aside" /></a>
+    <a href="#"><img src="{% static 'user/img/img-aside/aside6.png' %}" alt="img aside" /></a>
+    <a href="#"><img src="{% static 'user/img/img-aside/aside7.png' %}" alt="img aside" /></a>
+    <a href="#"><img src="{% static 'user/img/img-aside/aside8.png' %}" alt="img aside" /></a>
+    <a href="#"><img src="{% static 'user/img/img-aside/aside9.png' %}" alt="img aside" /></a>
+    <a href="#"><img src="{% static 'user/img/img-aside/aside10.jpg' %}" alt="img aside" /></a>
+    <a href="#"><img src="{% static 'user/img/img-aside/aside11.png' %}" alt="img aside" /></a>
+    <a href="#"><img src="{% static 'user/img/img-aside/aside12.jpg' %}" alt="img aside" /></a>
+    <a href="#"><img src="{% static 'user/img/img-aside/aside13.jpg' %}" alt="img aside" /></a>
+    <div class="image">
+      <div class="row justify-content-between m-0 head-card">
+        <p>Hình ảnh</p>
+        <a href="#">Xem tất cả >></a>
+      </div>
+      <div id="carouselExampleSlidesOnly" class="carousel slide carousel-image" data-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="{% static 'user/img/card-image/img-card3.png' %}" class="d-block w-100" alt="img carousel" />
+          </div>
+          <div class="carousel-item">
+            <img src="{% static 'user/img/card-image/img-card2.jpeg' %}" class="d-block w-100" alt="img carousel" />
+          </div>
+          <div class="carousel-item">
+            <img src="{% static 'user/img/card-image/img-card1.jpg' %}" class="d-block w-100" alt="img carousel" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="image">
+      <div class="row justify-content-between m-0 head-card">
+        <p>Video</p>
+        <a href="#">Xem tất cả >></a>
+      </div>
+      <div class="video-card">
+        <iframe
+          src="https://www.youtube.com/embed/gOiltxSoOoQ"
+          title="YouTube video player"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+        ></iframe>
+      </div>
+    </div>
+    <div class="image">
+      <div class="link-web">
+        <p>Liên kết web site</p>
+      </div>
+      <div class="select-web w-100">
+        <select class="w-100">
+          <option selected="selected" value="">Chọn web site</option>
+          <option value="">Sở Tư pháp tỉnh Đăk Nông</option>
+          <option value="">Cổng thông tin tỉnh Đăk Nông</option>
+          <option value="">Dịch vụ hành chính công</option>
+          <option value="">Báo Đăk Nông</option>
+          <option value="">Cổng thông tin Đảng bộ tỉnh Đăk Nông</option>
+          <option value="">Sở Thông tin &amp; Truyền thông</option>
+        </select>
+      </div>
+    </div>
+    <div class="image">
+      <div class="link-web">
+        <p>Thống kê truy cập</p>
+      </div>
+      <div>
+        <p class="p-3">Tổng truy cập:</p>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock content %}

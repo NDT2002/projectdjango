@@ -1,0 +1,185 @@
+{% extends 'admin/base.html' %} {% load static %} {% load i18n admin_urls admin_list %}
+{% block title %}Thêm tác giả{% endblock title %}
+{% block contentwrapper %}
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1>Tác giả</h1>
+        </div>
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item active">Auth</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+    <!-- /.container-fluid -->
+  </section>
+
+  <!-- Main content -->
+  <section class="content">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="card card-primary h-100">
+          <div class="card-header">
+            <h3 class="card-title">Thêm mới tác giả</h3>
+          </div>
+          {% if form %}
+          {{form}}
+          {% endif %}
+          <!-- /.card-header -->
+          <!-- form start -->
+          <form method="post" action="{% url 'add_author' %}">
+            {% csrf_token %}
+            <div class="card-body">
+              <div class="form-group-author">
+                <label for="username">Tên đăng nhập</label>
+                <input type="text" class="form-control" id="username" name="username" placeholder="Nhập tên đăng nhập" />
+              </div>
+              <div class="form-group-author">
+                <label for="password">Mật khẩu</label>
+                <input type="password" class="form-control" id="password" name="password" placeholder="Nhập mật khẩu" />
+              </div>
+              <div class="form-group-author">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" id="email" name="email" placeholder="Nhập địa chỉ email" />
+              </div>
+              <div class="form-group-author">
+                <label for="display_name">Tên hiển thị</label>
+                <input type="text" class="form-control" id="display_name" name="display_name" placeholder="Nhập tên hiển thị" />
+              </div>
+              <div class="form-group-author">
+                <label for="last_name">Họ và Tên</label>
+                <div class="row">
+                  <div class="col-md-6">
+                    <input type="text" class="form-control" id="last_name" name="last_name" placeholder="Nhập họ" />
+                  </div>
+                  <div class="col-md-6">
+                    <input type="text" class="form-control" id="first_name" name="first_name" placeholder="Nhập tên" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- /.card-body -->
+            
+
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="card card-primary h-100">
+          <div class="card-header">
+            <h3 class="card-title">Thông tin cá nhân</h3>
+          </div>
+          <!-- /.card-header -->
+          <!-- form start -->
+    {% comment %}  {% endcomment %}
+            <div class="card-body">
+              <div class="form-group-author">
+                <label for="job">Vị trí công tác</label>
+                <input type="text" class="form-control" id="job" name="job" placeholder="Nhập vị trí công tác" />
+              </div>
+              <div class="form-group-author">
+                <label for="address">Địa chỉ</label>
+                <input type="text" class="form-control" id="address" name="address" placeholder="Nhập địa chỉ" />
+              </div>
+              <div class="form-group-author">
+                <label for="phone">Số điện thoại</label>
+                <input type="phone" class="form-control" id="phone" name="phone" placeholder="Nhập số điện thoại" />
+              </div>
+              <div class="form-group-author">
+                <label for="description">Mô tả</label>
+                <textarea class="form-control" id="description" name="description" rows="3" placeholder="Nhập mô tả"></textarea>
+              </div>
+              <div class="px-3">
+                <button type="submit"  id="btn-save" class="btn btn-primary float-right">Lưu</button>
+                <button type="reset"  id="btn-reset" class="btn  btn-danger float-right" style="margin-right: 10px">Hủy</button>
+              </div>
+            </div>
+          </form>
+            <!-- /.card-body -->
+            <!-- /.row -->
+           
+          {% comment %} </form> {% endcomment %}
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+
+<script>
+  // Function to check if any field in col-4 is empty
+  function checkForm() {
+    var col4Inputs = document.querySelectorAll(".col-md-4 input, .col-md-4 textarea");
+    var btnSave = document.getElementById("btn-save");
+
+    var disableFields = false;
+
+    for (var i = 0; i < col4Inputs.length; i++) {
+      if (col4Inputs[i].value.trim() === "") {
+        disableFields = true;
+        break;
+      }
+    }
+
+    var col8Inputs = document.querySelectorAll(".col-md-8 input, .col-md-8 textarea");
+    for (var j = 0; j < col8Inputs.length; j++) {
+      col8Inputs[j].disabled = disableFields;
+    }
+
+    btnSave.disabled = disableFields;
+  }
+
+  // Attach the checkForm function to the input fields' input event
+  var col4Inputs = document.querySelectorAll(".col-md-4 input, .col-md-4 textarea");
+  for (var k = 0; k < col4Inputs.length; k++) {
+    col4Inputs[k].addEventListener("input", checkForm);
+  }
+
+// Function to format phone number as 4-3-3-3-2
+function formatPhoneNumber(input) {
+  // Xóa tất cả các ký tự không phải số và dấu gạch nối
+  var cleaned = input.value.replace(/[^\d-]/g, '');
+
+  // Giới hạn số lượng ký tự số và dấu gạch nối thành 15
+  cleaned = cleaned.slice(0, 19);
+
+  // Xóa tất cả các dấu gạch nối hiện tại
+  cleaned = cleaned.replace(/-/g, '');
+
+  // Định dạng theo dạng 4-3-3-3-2
+  var formatted = '';
+  for (var i = 0; i < cleaned.length; i++) {
+    if (i === 4 || i === 7 || i === 10 || i === 13 || i === 15) {
+      formatted += '-';
+    }
+    formatted += cleaned.charAt(i);
+  }
+
+  // Gán lại giá trị đã định dạng vào trường "Số điện thoại"
+  input.value = formatted;
+}
+
+// Lấy trường "Số điện thoại" bằng id
+var phoneInput = document.getElementById("phone");
+
+// Gán sự kiện input vào trường "Số điện thoại"
+phoneInput.addEventListener("input", function () {
+  formatPhoneNumber(this);
+});
+
+
+
+
+
+  // Check the form initially when the page loads
+  checkForm();
+</script>
+
+
+
+{% endblock contentwrapper %}

@@ -1,0 +1,83 @@
+{% comment %} {% extends "admin/base.html" %} {% endcomment %} {% load i18n static %} 
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'admin/css/login.css' %}" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <!-- Thêm Bootstrap CSS -->
+    <title>Trang Đăng Nhập</title>
+  </head>
+  <style>
+    body {
+      background-image: url("{% static 'admin/img/bg-login.jpg' %}");  
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center center;
+    }
+    body::before {
+      content: "";
+      background-color: rgba(0, 0, 0, 0.25); /* Màu nền mờ (ở đây là màu đen với độ mờ 50%) */
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1; /* Đảm bảo lớp phủ nằm trên hình ảnh nền */
+    }
+  </style>
+  <body>
+    <div class="container-md">
+      <div class="login_main">
+        <div class="row">
+          <div class="col-md-5 img_login">
+            <img src="{% static 'admin/img/logo.png' %}" class="d-block m-auto" />
+          </div>
+          <div class="col-md-7 login_form">
+            <h1 style="display: flex; justify-content: center">Đăng Nhập</h1>
+            {% if form.errors and not form.non_field_errors %}
+            <p class="errornote text-danger">{% blocktrans count counter=form.errors.items|length %}Vui lòng sửa lỗi dưới đây.{% plural %}Vui lòng sửa các lỗi dưới đây.{% endblocktrans %}</p>
+            {% endif %} {% if form.non_field_errors %}
+            <ul class="errorlist list-unstyled alert alert-danger mr-4" role="alert">
+              {% for error in form.non_field_errors %}
+              <li>{{ error }}</li>
+              {% endfor %}
+            </ul>
+            {% endif %}
+            <form method="post" action="{% url 'admin:login' %}" id="login-form" novalidate>
+                {% csrf_token %} 
+                {% comment %} {{ form.username.label_tag }} {{ form.username }}
+                {{ form.password.label_tag }} {{ form.password }} {% endcomment %}
+                <input type="hidden" name="next" value="{{ next }}" />
+              <div class="form-group">
+                <label for="username">Tài Khoản:</label>
+                <input type="text" id="username" name="username" required />
+              </div>
+              <div class="form-group">
+                <label for="password">Mật Khẩu:</label>
+                <input type="password" id="password" name="password" required />
+              </div>
+              <div class="form-group checkbox-group">
+                <input type="checkbox" id="remember" name="remember" />
+                <label for="remember">Ghi Nhớ Mật Khẩu</label>
+                {% url 'admin_password_reset' as password_reset_url %} {% if password_reset_url %}
+                <p>
+                    <a href="{{ password_reset_url }}"> {% trans 'Quên mật khẩu hoặc tên đăng nhập?' %} </a>
+                </p>
+                {% endif %}
+              </div>
+              <div class="form-group" style="display: flex; justify-content: center">
+                <input type="submit" class="login-button" value="{% trans 'Đăng nhập' %}"/>
+              </div>
+            </form>
+            <div class="forgot-password"><a href="#">Quên Mật Khẩu?</a> | <a href="#">Tạo Tài Khoản Mới</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Thêm Bootstrap JavaScript -->
+  </body>
+</html>

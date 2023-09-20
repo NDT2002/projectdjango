@@ -1,0 +1,238 @@
+{% load static %}
+<aside class="main-sidebar sidebar-light-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="{% url 'admin:index' %}" class="brand-link w-100 overflow-hidden">
+      <img src="{% static 'img/Logo.png' %}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3 d-block" style="opacity: 0.8 ; max-witdh:150px !important" />
+      <span class="brand-text font-weight-light">DAKNONG.GOV</span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <!-- Sidebar user panel (optional) -->
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="image">
+          <img src="{% static 'img/user2-160x160.jpg' %}" class="img-circle elevation-2" alt="User Image" />
+        </div>
+        <div class="info">
+          <a href="#" class="d-block">Admin</a>
+        </div>
+      </div>
+
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <!-- Add icons to the links using the .nav-icon class
+           with font-awesome or any other icon font library -->
+          <li class="nav-item has-treeview {% if request.resolver_match.url_name == 'dashboard' %}menu-open{% endif %}">
+            <a href="{% url 'admin:index' %}" class="nav-link {% if request.resolver_match.url_name == 'dashboard' %}active{% endif %}">
+              <i class="nav-icon bi bi-speedometer"></i>
+              <p>
+                Dashboard
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item has-treeview {% if request.path == '/manager/news' or request.path == '/manager/news/create' %}active{% endif %}">
+            <a href="{% url 'admin:app_admin_post_add' %}" class="nav-link {% if request.resolver_match.url_name == 'news_list' or request.resolver_match.url_name == 'create_news' %}active{% endif %}">
+              <i class="nav-icon bi bi-newspaper"></i>
+              <p>
+                Quản lý Tin tức
+                <i class="bi bi-caret-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{% url 'create_post' %}" class="nav-link">
+                  <i class="bi bi-file-plus nav-icon"></i>
+                  <p>Thêm mới tin tức</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{% url 'post' %}" class="nav-link">
+                  <i class="bi bi-view-list nav-icon"></i>
+                  <p>Danh sách tin tức</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item has-treeview {% if request.resolver_match.url_name == 'categories_list' or request.resolver_match.url_name == 'create_categories' %}menu-open{% endif %}">
+            <a
+              href=""
+              class="nav-link {% if request.resolver_match.url_name == 'categories_list' or request.resolver_match.url_name == 'create_categories' %}active{% endif %}"
+            >
+              <i class="nav-icon bi bi-collection"></i>
+              <p>
+                Danh mục
+                <i class="right bi bi-caret-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{% url 'term' %}" class="nav-link {% if request.resolver_match.url_name == 'create_categories' %}active{% endif %}">
+                  <i class="bi bi-gear-wide-connected nav-icon"></i>
+                  <p>Quản lý danh mục</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{% url 'taxonomy' %}" class="nav-link {% if request.resolver_match.url_name == 'categories_list' %}active{% endif %}">
+                  <i class="bi bi-view-list nav-icon"></i>
+                  <p>Quản lý nhóm danh mục</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item has-treeview {% if request.resolver_match.url_name == 'create_auth' or request.resolver_match.url_name == 'auth_list' %}menu-open{% endif %}">
+            <a href="" class="nav-link {% if request.resolver_match.url_name == 'create_auth' or request.resolver_match.url_name == 'auth_list' %}active{% endif %}">
+              <i class="nav-icon bi bi-person-vcard"></i>
+              <p>
+                Quản lý Tác giả
+                <i class="bi bi-caret-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item {% if request.resolver_match.url_name == 'create_auth' %}active{% endif %}">
+                <a href="{% url 'create_author' %}" class="nav-link {% if request.resolver_match.url_name == 'create_author' %}active{% endif %}">
+                  <i class="bi bi-person-plus nav-icon"></i>
+                  <p>Thêm tác giả</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{% url 'author' %}" class="nav-link {% if request.resolver_match.url_name == 'author' %}active{% endif %}">
+                  <i class="bi bi-view-list nav-icon"></i>
+                  <p>Danh sách tác giả</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          <li class="nav-item has-treeview {% if request.resolver_match.url_name == 'tags_list' %}menu-open{% endif %}">
+            <a href="" class="nav-link {% if request.resolver_match.url_name == 'tags_list' %}active{% endif %}">
+              <i class="nav-icon bi bi-bookmark"></i>
+              <p>Quản lý thẻ</p>
+            </a>
+          </li>
+          <li class="nav-item has-treeview {% if request.resolver_match.url_name == 'media_list' %}menu-open{% endif %}">
+            <a href="" class="nav-link {% if request.resolver_match.url_name == 'media_list' %}active{% endif %}">
+              <i class="nav-icon bi bi-journal-album"></i>
+              <p>Thư viện ảnh</p>
+              <i class="right bi bi-caret-left"></i>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="" class="nav-link {% if request.resolver_match.url_name == 'get_gallery' %}active{% endif %}">
+                  <i class="bi bi-view-list nav-icon"></i>
+                  <p>Bộ sưu tập</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="" class="nav-link {% if request.resolver_match.url_name == 'widget_list' %}active{% endif %}">
+                  <i class="bi bi-gear-wide-connected nav-icon"></i>
+                  <p>Quản lý Ảnh</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-header">Giao diện</li>
+          <li class="nav-item has-treeview {% if request.resolver_match.url_name == 'widget_list' or request.resolver_match.url_name == 'widget_manager' %}menu-open{% endif %}">
+            <a
+              href=""
+              class="nav-link {% if request.resolver_match.url_name == 'widget_list' or request.resolver_match.url_name == 'widget_manager' %}active{% endif %}"
+            >
+              <i class="nav-icon bi bi-grid-3x3-gap"></i>
+              <p>
+                Widget
+                <i class="right bi bi-caret-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{% url 'create_widget' %}" class="nav-link {% if request.resolver_match.url_name == 'widget_manager' %}active{% endif %}">
+                  <i class="bi bi-gear-wide-connected nav-icon"></i>
+                  <p>Quản lý Widget</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{% url 'widget' %}" class="nav-link {% if request.resolver_match.url_name == 'widget_list' %}active{% endif %}">
+                  <i class="bi bi-view-list nav-icon"></i>
+                  <p>Widget Area</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item has-treeview {% if request.resolver_match.url_name == 'create_menu' or request.resolver_match.url_name == 'menu_manager' %}menu-open{% endif %}">
+            <a
+              href=""
+              class="nav-link {% if request.resolver_match.url_name == 'create_menu' or request.resolver_match.url_name == 'menu_manager' %}active{% endif %}"
+            >
+              <i class="nav-icon bi-card-image"></i>
+              <p>
+                Menu
+                <i class="right bi bi-caret-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="" class="nav-link {% if request.resolver_match.url_name == 'menu_manager' %}active{% endif %}">
+                  <i class="bi bi-gear-wide-connected nav-icon"></i>
+                  <p>Menu</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="" class="nav-link {% if request.resolver_match.url_name == 'create_menu' %}active{% endif %}">
+                  <i class="bi bi-view-list nav-icon"></i>
+                  <p>Thêm Menu mới</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item has-treeview {% if request.resolver_match.url_name == 'banner_manager' or request.resolver_match.url_name == 'create_banner' %}menu-open{% endif %}">
+            <a
+              href=""
+              class="nav-link {% if request.resolver_match.url_name == 'banner_manager' or request.resolver_match.url_name == 'create_banner' %}active{% endif %}"
+            >
+              <i class="nav-icon bi-card-image"></i>
+              <p>
+                Banner
+                <i class="right bi bi-caret-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="" class="nav-link {% if request.resolver_match.url_name == 'banner_manager' %}active{% endif %}">
+                  <i class="bi bi-gear-wide-connected nav-icon"></i>
+                  <p>Banner</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="" class="nav-link {% if request.resolver_match.url_name == 'create_banner' %}active{% endif %}">
+                  <i class="bi bi-view-list nav-icon"></i>
+                  <p>Thêm Banner mới</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-header">Cài Đặt</li>
+          <li class="nav-item">
+            <a href="" class="nav-link {% if request.resolver_match.url_name == 'get_pageinfo' %}active{% endif %}">
+              <i class="nav-icon bi bi-person-gear"></i>
+              <p>Cấu hình trang</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="" class="nav-link">
+              <i class="nav-icon bi bi-person-gear"></i>
+              <p>Quản lý người dùng</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="" class="nav-link">
+              <i class="nav-icon bi bi-box-arrow-right"></i>
+              <p>Đăng xuất</p>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+  </aside>

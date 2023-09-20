@@ -1,0 +1,109 @@
+  body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.login-form {
+  background-color: rgba(255, 255, 255, 75%);
+  box-shadow: -20px 20px 27px rgb(255 0 0 / 30%);
+  border-radius: 13px;
+  background-color: #ffffff;
+  padding: 20px;
+  padding-top: 90px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  position: relative;
+
+}
+.row{
+    display: flex;
+}
+.login-image {
+    text-align: center;
+    position: absolute; /* Đặt position là absolute */
+    top: -18%; /* Điều chỉnh vị trí đứng đầu form */
+    left: 50%; /* Đặt giữa theo chiều ngang */
+    transform: translateX(-50%);
+}
+.login-image img{
+  border-radius: 80px;
+}
+
+.login-image img {
+  max-width: 200px;
+}
+
+.form-title {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.form-check-label {
+  padding-left: 0;
+}
+
+label {
+  font-weight: bold;
+  margin-bottom: 0px !important;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  width: 90%;
+  margin: 0;
+  border: none;
+  border-radius: 0;
+  border-bottom: 1px solid #898989; /* Thay đổi màu sắc của gạch chân tại đây */
+  background: transparent; /* Loại bỏ nền của input */
+  outline: none; /* Loại bỏ viền xung quanh input khi được nhấn */
+}
+
+.checkbox-group {
+  display: flex;
+  align-items: center;
+}
+
+input[type="checkbox"] {
+  margin-right: 5px;
+}
+
+.login-button {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+}
+
+.login-button:hover {
+  background-color: #0056b3;
+}
+
+.forgot-password {
+  text-align: center;
+  margin-top: 10px;
+}
+
+a {
+  text-decoration: none;
+  color: #007bff;
+}
+
+@media screen and (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    width: 80%;
+  }
+  .left,
+  .right {
+    width: 100%;
+    padding: 10px;
+  }
+}

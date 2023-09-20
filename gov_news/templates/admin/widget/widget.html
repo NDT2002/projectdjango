@@ -1,0 +1,310 @@
+{% extends 'admin/base.html' %} {% load static %} {% block contentwrapper %}
+
+  <!-- Content Header (Page header) -->
+  <div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1 class="m-0 text-dark">
+            Widget <a href=""><i class="bi bi-file-plus text-primary"></i></a>
+          </h1>
+        </div>
+
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+          </ol>
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+  </div>
+  <!-- /.content-header -->
+  <!-- Main content -->
+  <section class="content">
+    <!-- general form elements disabled -->
+    <div class="row m-0">
+      <div class="col-lg-5 d-flex flex-column widget-col m-0 p-0 rounded-top h-100 overflow-hidden shadow-sm border p-2">
+        <span class="col-12 title bg-secondary py-2 mb-1 h5">Widget sẵn có <br>
+        </span>
+        <p class='h6 text-muted'>Kéo thả các mục ở dưới vào phần bên cạnh để thêm nhanh</p>
+        <div class="block">
+          <div id="widget-1" class="card-widget widget-examp card card-light border collapsed-card" draggable="true">
+            <div class="card-header">
+              <span class="card-title">Văn bản</span>
+              <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="bi bi-caret-down right"></i></button>
+              </div>
+              <!-- /.card-tools -->
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+              <div class="mb-3">
+                <label for="" class="form-label">Nội dung :</label>
+                <input type="text" class="form-control" name="" id="" aria-describedby="helpId" placeholder="" />
+                <div class="select-box">
+                  <label for="" class="form-label">Chọn đối tượng :</label>
+                  <select class="custom-select" name="" id="">
+                  </select>
+                </div>
+              </div>
+              <button type="button" class="btn btn-block btn-primary btn-sm">Thêm</button>
+            </div>
+          </div>
+
+          <!-- /.card-body -->
+          <div class="desc">
+            <span class="text-muted">Mô tả</span>
+          </div>
+        </div>
+        <div class="block">
+          <div id="widget-2" class="card-widget widget-examp card card-light border collapsed-card" draggable="true">
+            <div class="card-header">
+              <span class="card-title">Link</span>
+              <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="bi bi-caret-down right"></i></button>
+              </div>
+              <!-- /.card-tools -->
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+              <div class="mb-3">
+                <label for="" class="form-label">Tiêu đề :</label>
+                <input type="text" class="form-control" name="" id="" aria-describedby="helpId" placeholder="" />
+                <label for="" class="form-label">Liên kết :</label>
+                <input type="text" class="form-control" name="" id="" aria-describedby="helpId" placeholder="" />
+                <div class="select-box">
+                  <label for="" class="form-label">Chọn đối tượng :</label>
+                  <select class="custom-select" name="" id="">
+                  </select>
+                </div>
+              </div>
+              <button type="button" class="btn btn-block btn-primary btn-sm">Thêm</button>
+            </div>
+          </div>
+
+          <!-- /.card-body -->
+          <div class="desc">
+            <span class="text-muted">Mô tả</span>
+          </div>
+        </div>
+        <div class="block">
+          <div id="widget-3" class="card-widget widget-examp card card-light border collapsed-card" draggable="true">
+            <div class="card-header">
+              <span class="card-title">Hình ảnh</span>
+              <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="bi bi-caret-down right"></i></button>
+              </div>
+              <!-- /.card-tools -->
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+              <div class="mb-3">
+                <label for="image-title" class="form-label">Tiêu đề :</label>
+                <input type="text" class="form-control" name="image-title" id="image-title" aria-describedby="helpId" placeholder="" />
+                <label for="image-link" class="form-label">Liên kết :</label>
+                <input type="text" class="form-control" name="image-link" id="image-link" aria-describedby="helpId" placeholder="" />
+                <div class="select-box">
+                  <label for="target-object" class="form-label">Chọn đối tượng :</label>
+                  <select class="custom-select" name="target-object" id="target-object">
+                    <!-- Tùy chọn đối tượng -->
+                  </select>
+                </div>
+              </div>
+              <button type="button" class="btn btn-block btn-primary btn-sm">Thêm</button>
+            </div>
+          </div>
+        
+          <!-- /.card-body -->
+          <div class="desc">
+            <span class="text-muted">Mô tả</span>
+          </div>
+        </div>
+        <div class="block">
+          <div id="widget-4" class="card-widget widget-examp card card-light border collapsed-card" draggable="true">
+            <div class="card-header">
+              <span class="card-title">Bài viết gần đây</span>
+              <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="bi bi-caret-down right"></i></button>
+              </div>
+              <!-- /.card-tools -->
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+              <div class="mb-3">
+                <label for="post-title" class="form-label">Tiêu đề bài viết:</label>
+                <input type="text" class="form-control" name="post-title" id="post-title" aria-describedby="helpId" placeholder="" />
+                <label for="post-link" class="form-label">Liên kết bài viết:</label>
+                <input type="text" class="form-control" name="post-link" id="post-link" aria-describedby="helpId" placeholder="" />
+                <label for="post-description" class="form-label">Mô tả bài viết:</label>
+                <textarea class="form-control" name="post-description" id="post-description" rows="3"></textarea>
+                <div class="select-box">
+                  <label for="target-object" class="form-label">Chọn đối tượng :</label>
+                  <select class="custom-select" name="target-object" id="target-object">
+                    <!-- Tùy chọn đối tượng -->
+                  </select>
+                </div>
+              </div>
+              <button type="button" class="btn btn-block btn-primary btn-sm">Thêm</button>
+            </div>
+          </div>
+        
+          <!-- /.card-body -->
+          <div class="desc">
+            <span class="text-muted">Mô tả</span>
+          </div>
+        </div>
+        <div class="block">
+          <div id="widget-5" class="card-widget widget-examp card card-light border collapsed-card" draggable="true">
+            <div class="card-header">
+              <span class="card-title">Audio</span>
+              <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="bi bi-caret-down right"></i></button>
+              </div>
+              <!-- /.card-tools -->
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+              <div class="mb-3">
+                <label for="audio-title" class="form-label">Tiêu đề:</label>
+                <input type="text" class="form-control" name="audio-title" id="audio-title" aria-describedby="helpId" placeholder="" />
+                <label for="audio-file" class="form-label">Chọn tệp audio:</label>
+                <input type="file" class="form-control" name="audio-file" id="audio-file" accept="audio/*" />
+                <div class="select-box">
+                  <label for="target-audio-object" class="form-label">Chọn đối tượng:</label>
+                  <select class="custom-select" name="target-audio-object" id="target-audio-object">
+                    <!-- Tùy chọn đối tượng -->
+                  </select>
+                </div>
+              </div>
+              <button type="button" class="btn btn-block btn-primary btn-sm">Thêm</button>
+            </div>
+          </div>
+        
+          <!-- /.card-body -->
+          <div class="desc">
+            <span class="text-muted">Mô tả</span>
+          </div>
+        </div>
+        <div class="block">
+          <div id="widget-6" class="card-widget widget-examp card card-light border collapsed-card" draggable="true">
+            <div class="card-header">
+              <span class="card-title">Ô tìm kiếm</span>
+              <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="bi bi-caret-down right"></i></button>
+              </div>
+              <!-- /.card-tools -->
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+              <div class="mb-3">
+                <label for="search-title" class="form-label">Tiêu đề:</label>
+                <input type="text" class="form-control" name="search-title" id="search-title" aria-describedby="helpId" placeholder="" />
+                <div class="select-box">
+                  <label for="target-search-object" class="form-label">Chọn đối tượng:</label>
+                  <select class="custom-select" name="target-search-object" id="target-search-object">
+                    <!-- Tùy chọn đối tượng tìm kiếm -->
+                  </select>
+                </div>
+              </div>
+              <button type="button" class="btn btn-block btn-primary btn-sm">Tìm kiếm</button>
+            </div>
+          </div>
+        
+          <!-- /.card-body -->
+          <div class="desc">
+            <span class="text-muted">Mô tả</span>
+          </div>
+        </div>
+        <div class="block">
+          <div id="widget-7" class="card-widget widget-examp card card-light border collapsed-card" draggable="true">
+            <div class="card-header">
+              <span class="card-title">Thư viện hình ảnh</span>
+              <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="bi bi-caret-down right"></i></button>
+              </div>
+              <!-- /.card-tools -->
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+              <div class="mb-3">
+                <label for="image-gallery" class="form-label">Chọn hình ảnh:</label>
+                <input type="file" class="form-control" name="image-gallery" id="image-gallery" multiple accept="image/*" />
+              </div>
+              <div class="selected-images">
+                <!-- Hiển thị các hình ảnh đã chọn -->
+              </div>
+              <button type="button" class="btn btn-block btn-primary btn-sm">Thêm vào thư viện</button>
+            </div>
+          </div>
+        
+          <!-- /.card-body -->
+          <div class="desc">
+            <span class="text-muted">Mô tả</span>
+          </div>
+        </div>
+        
+      </div>
+     {% comment %} widget-created {% endcomment %}
+      <div class="col-lg-7 widget-col d-flex flex-column m-0 p-0 rounded-top h-100 overflow-hidden shadow-lg border p-2">
+        <span class="title col-12 mb-1 py-2 bg-success">Widget đã tạo</span>
+        <p class='h6 text-muted'> Nhấn biểu tượng mũi tên để mở phần cần chỉnh</p>
+        <div class="block">
+          <div id="widget-cr-1" class="card-widget widget-created card card-light collapsed-card">
+            <div class="card-header">
+              <span class="card-title">Mẫu 1</span>
+              <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="bi bi-caret-down"></i></button>
+              </div>
+              <!-- /.card-tools -->
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body ">
+              <ul class="widget-content list-group list-group-flush">
+                <li class="list-group-item">Thả mục được chọn vào đây</li>
+              </ul>
+            </div>
+            
+            <div class="card-footer">
+              <a name="save" id="" class="btn btn-primary" href="#" role="button">Lưu</a>
+              <a name="close" id="" class="btn btn-danger" href="#" role="button">Hủy</a>
+            </div>
+            <div class="desc border-top">
+              <span class="text-muted">Mô tả</span>
+            </div>
+            <!-- /.card-body -->
+          </div>
+        </div>
+        <div class="block">
+          <div id="widget-cr-2" class="card-widget widget-created card card-light collapsed-card">
+            <div class="card-header">
+              <span class="card-title">Mẫu 2</span>
+              <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="bi bi-caret-down"></i></button>
+              </div>
+              <!-- /.card-tools -->
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body ">
+              <ul class="widget-content list-group list-group-flush">
+                <li class="list-group-item">Thả mục được chọn vào đây</li>
+              </ul>
+            </div>
+            
+            <div class="card-footer">
+              <a name="save" id="" class="btn btn-primary" href="#" role="button">Lưu</a>
+              <a name="close" id="" class="btn btn-danger" href="#" role="button">Hủy</a>
+            </div>
+            <div class="desc border-top">
+              <span class="text-muted">Mô tả</span>
+            </div>
+            <!-- /.card-body -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /.card -->
+  </section>
+{% endblock contentwrapper %}

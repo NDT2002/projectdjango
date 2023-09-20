@@ -1,0 +1,278 @@
+{% extends 'base.html' %} {% load static %} {% block title %}
+<title>Tin tổng hợp</title>
+{% endblock title %} {% block content %}
+<section class="row m-0 new-detail">
+  <div class="col-md-2 col-12 aside-left mt-2 p-0">
+    <div class="col-left mb-2">
+      <div class="title-top">
+        <p>Giới thiệu</p>
+      </div>
+      <div class="list-left">
+        <ul>
+          <li>
+            <a href="#">Giới thiệu chung</a>
+          </li>
+          <li>
+            <a href="#">Lịch sử văn hoá</a>
+          </li>
+          <li>
+            <a href="#">Thắng cảnh - du lịch</a>
+          </li>
+          <li>
+            <a href="#">Điều kiện tự nhiên</a>
+          </li>
+        </ul>
+      </div>
+      <a href="#"> <img class="d-block w-100" src="{% static 'user/img/ubnd.jpg' %}" alt="col-left img" /> </a>
+    </div>
+
+    <div class="col-left mb-2">
+      <div class="title-top">
+        <p>Lấy ý kiến góp ý</p>
+      </div>
+      <div class="list-left">
+        <ul>
+          <li>
+            <a href="#">Góp ý dự thảo văn bản quy phạm pháp luật</a>
+          </li>
+          <li>
+            <a href="#">Góp ý các quy định hành chính</a>
+          </li>
+          <li>
+            <a href="#">Hỏi & đáp</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="col-left mb-2">
+      <div class="title-top">
+        <p>Hệ thống văn bản</p>
+      </div>
+      <div class="list-left">
+        <ul>
+          <li>
+            <a href="#">Văn bản chỉ đạo điều hành</a>
+          </li>
+          <li>
+            <a href="#">Văn bản quy phạm pháp luật</a>
+          </li>
+          <li>
+            <a href="#">Công báo</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="col-left mb-2">
+      <div class="title-top">
+        <p>Báo cáo, thống kê</p>
+      </div>
+      <div class="list-left">
+        <ul>
+          <li>
+            <a href="#">Thông tin Kinh tế - Xã hội</a>
+          </li>
+          <li>
+            <a href="#">Chỉ số giá tiêu dùng</a>
+          </li>
+          <li>
+            <a href="#">Một số chỉ tiêu chủ yếu</a>
+          </li>
+          <li>
+            <a href="#">Số liệu vốn đầu tư</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-8 col-12 mt-2">
+    <div class="title-detail">
+      <p class="text-uppercase p-2">Tin Tổng Hợp</p>
+    </div>
+    <div class="post_list">
+      {% for post in posts %}
+      <div class="col-md-12 d-flex post_list_item">
+        <div class="col-md-3 p-0">
+          <a href="{% url 'news_detail' post.id %}">
+            {% if post.post_image %}
+            <img style="width: 100%; height: 100%" src="{{ post.post_image.url }}" alt="Featured Image">
+            {% else %}
+            <img style="width: 100%; height: 100%" src=" " alt="Featured Image">
+            {% endif %}
+            
+          </a>
+        </div>
+        <div class="col-md-9 pr-0">
+          <a class="font-weight-bold content-first d-block" href="{% url 'news_detail' post.id %}">{{post.post_title}} </a>
+          <span class="publish-date text-muted font-weight-bold">Ngày {{ post.post_date|date:"j" }} tháng {{ post.post_date|date:"n" }} năm {{ post.post_date|date:"Y" }}</span>
+          <div class="post-desc p-0">{{ post.post_excerpt }}</div>
+        </div>
+      </div>
+      <hr style="width: 90%" />
+      {% endfor %}
+
+      <div class="d-flex search-date">
+        <div class="col-md-5 search-lable">Xem theo ngày:</div>
+        <div class="col-md-5 search-input">
+          <input class="form-search" type="date" id="dateSearch" />
+        </div>
+        <div class="col-md-2 btn btn-search">Tìm</div>
+      </div>
+      {% if posts.paginator.num_pages > 1 %}
+      <div class="pagination">
+        <span class="step-links">
+          {% if posts.has_previous %}
+          <a class="navigate" href="?page=1"> Trang đầu</a>
+          <a class="navigate" href="?page={{ posts.previous_page_number }}">←</a>
+          {% endif %} {% for page_num in posts.paginator.page_range %} {% if posts.number == page_num %}
+          <span class="page-current">{{ page_num }}</span>
+          {% elif forloop.counter0|divisibleby:3 %} {% if forloop.counter0 > 0 %}
+          <span class="page-ellipsis">...</span>
+          {% comment %} {% endif %} {% elif forloop.counter|divisibleby:3 %} {% if forloop.counter != posts.paginator.num_pages %}
+          <span class="page-ellipsis">...</span> {% endcomment %}
+          {% endif %} {% elif forloop.counter >= posts.number|add:"-5" and forloop.counter <= posts.number|add:"4" %}
+          <a class="page_navigate" href="?page={{ page_num }}">{{ page_num }}</a>
+          {% endif %} {% endfor %} {% if posts.has_next %}
+          <a class="page_navigate" href="?page={{ posts.paginator.num_pages }}">{{ posts.paginator.num_pages }}</a>
+          <a class="navigate" href="?page={{ posts.next_page_number }}">→</a>
+          <a class="navigate" href="?page={{ posts.paginator.num_pages }}">Trang cuối </a>
+          {% endif %}
+        </span>
+      </div>
+      {% endif %}
+    </div>
+    <div class="news-other">
+      <div class="news-other-title">
+        <p class="text-uppercase text-danger font-weight-bold p-2 m-0">Tin Liên Quan</p>
+      </div>
+      <div class="content-second text-justify">
+        <ul class="news-other-list">
+          <li>
+            <a href="#"> Co.opmart, Co.opxtra tăng khuyến mãi, lượng hàng từ 20 – 30% dịp lễ 2/9 </a>
+            <span class="text-muted">(30/08)</span>
+          </li>
+          <li>
+            <a href="#"> Khai mạc Hội chợ Quốc tế Đồ gỗ và Mỹ nghệ xuất khẩu Việt Nam ASEAN 2023 </a>
+            <span class="text-muted">(29/08)</span>
+          </li>
+          <li>
+            <a href="#"> Nghiên cứu cập nhật hoàn thiện các nội dung trong Đồ án quy hoạch xử lý chất thải rắn TPHCM đến năm 2025, tầm nhìn đến 2050 </a>
+            <span class="text-muted">(29/08)</span>
+          </li>
+          <li>
+            <a href="#">
+              Xây dựng Nghị quyết quy định tiêu chí, tiêu chuẩn, lộ trình, điều kiện, định mức, đơn giá, giá đặt hàng đối với các nhà đầu tư chuyển đổi công nghệ sang xử lý chất thải rắn sinh hoạt có
+              thu hồi năng lượng
+            </a>
+            <span class="text-muted">(28/08)</span>
+          </li>
+          <li>
+            <a href="#"> Tăng cường công tác quản lý, sử dụng đèn, còi phát tín hiệu ưu tiên theo các phương tiện xe ô tô cứu thương </a>
+            <span class="text-muted"> (28/08)</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="box-comment mb-3">
+      <div class="box-comment-title">
+        <p class="text-uppercase text-danger font-weight-bold p-2 m-0">Bình Luận</p>
+      </div>
+      <div class="box-comment-form">
+        <form class="form-group">
+          <div class="mb-3">
+            <label for="" class="form-label"></label>
+            <textarea class="form-control" name="" id="" rows="3" placeholder=" nhập bình luận tại đây..."></textarea>
+          </div>
+          <a name="" id="" class="btn btn-primary" href="#" role="button">Gửi Bình Luận</a>
+        </form>
+        <div class="bottom-panel pl-2">Ý KIẾN BẠN ĐỌC (0)</div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-2 col-12 aside-right mt-2 p-0">
+    <div class="col-left mb-2">
+      <a href="#"> <img class="d-block w-100" src="{% static 'user/img/mapdaknong.jpg' %}" alt="col-left img" /> </a>
+      <div class="title-top">
+        <p>Quy hoạch, phát triển</p>
+      </div>
+      <div class="list-left">
+        <ul>
+          <li>
+            <a href="#">Chiến lược, định hướng, kế hoạch phát triển ngành </a>
+          </li>
+          <li>
+            <a href="#">Quy hoạch xây dựng </a>
+          </li>
+          <li>
+            <a href="#">Bản đồ quy hoạch đô thị </a>
+          </li>
+          <li>
+            <a href="#">Quy hoạch, kế hoạch sử dụng đất </a>
+          </li>
+          <li>
+            <a href="#">Quy hoạch thu gom, tái chế, xử lý chất thải</a>
+          </li>
+          <li>
+            <a href="#">Các khu vực có nguy cơ xảy ra ô nhiễm môi trường</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="col-left mb-2">
+      <div class="title-top">
+        <p>Thông tin, tuyên truyền</p>
+      </div>
+      <div class="list-left">
+        <ul>
+          <li>
+            <a href="#">Học và làm theo lời Bác </a>
+          </li>
+          <li>
+            <a href="#">Chế độ, chính sách mới </a>
+          </li>
+          <li>
+            <a href="#">Tuyên truyền phổ biến pháp luật về Khiếu nại tố cáo </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="col-left mb-2">
+      <div class="title-top">
+        <p>Chỉ đạo, điều hành</p>
+      </div>
+      <div class="list-left">
+        <ul>
+          <li>
+            <a href="#">Văn bản chỉ đạo điều hành</a>
+          </li>
+          <li>
+            <a href="#">Tin tức chỉ đạo điều hành </a>
+          </li>
+          <li>
+            <a href="#">Thông tin khen thưởng </a>
+          </li>
+          <li>
+            <a href="#">Lịch công tác của Thường trực UBND Thành phố </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="col-left mb-2">
+      <div class="title-top">
+        <p>An ninh trật tự</p>
+      </div>
+      <div class="list-left">
+        <ul>
+          <li>
+            <a href="#">An ninh trật tự</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock content %}

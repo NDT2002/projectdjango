@@ -1,0 +1,118 @@
+{% extends 'manager/base.html' %}
+{% load static %}
+{% block contentwrapper %}
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0 text-dark">Widget <a href="{% url 'create_widget'  %}"><i class="bi bi-file-plus text-primary"></i></a></h1>
+          </div>
+
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+            </ol>
+          </div><!-- /.col -->
+          
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+    <!-- Main content -->
+    <section class="content">
+      <div class="card">
+        <div class="card-header bg-warning">
+          <h3 class="card-title"> Widget Area</h3>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+          <table id="example1" class="table table-bordered table-striped">
+            <thead>
+            <tr>
+              <th>stt</th>
+              <th>Tiêu đề</th>
+              <th>Vị Trí </th>
+              <th>Mô tả</th>
+              <th>Thao tác</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td>Trident</td>
+              <td>Internet
+                Explorer 4.0
+              </td>
+              <td>Win 95+</td>
+              <td> 4</td>
+              <td>
+                <div class="button_TG ml-3 d-flex " > 
+                  <button class="btn btn-xs btn-primary mr-4"><a class="nav-link active text-white" href="#revenue-chart" data-toggle="tab"><i class="bi bi-eye"></i> Xem Chi Tiết</a></button>
+                  <button class="btn btn-xs btn-success mr-4"><a class="nav-link active text-white" href="#revenue-chart" data-toggle="tab"><i class="bi bi-pencil"></i> Sửa</a></button>
+                  <button class="btn btn-xs btn-danger"><a class="nav-link active text-white" href="#revenue-chart" data-toggle="tab"><i class="bi bi-trash3"></i> Xóa</a></button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>Trident</td>
+              <td>Internet
+                Explorer 5.0
+              </td>
+              <td>Win 95+</td>
+              <td>5</td>
+              <td>
+                <div class="button_TG ml-3 d-flex " > 
+                  <button class="btn btn-xs btn-primary mr-4"><a class="nav-link active text-white" href="#revenue-chart" data-toggle="tab"><i class="bi bi-eye"></i> Xem Chi Tiết</a></button>
+                  <button class="btn btn-xs btn-success mr-4"><a class="nav-link active text-white" href="#revenue-chart" data-toggle="tab"><i class="bi bi-pencil"></i> Sửa</a></button>
+                  <button class="btn btn-xs btn-danger"><a class="nav-link active text-white" href="#revenue-chart" data-toggle="tab"><i class="bi bi-trash3"></i> Xóa</a></button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>Trident</td>
+              <td>Internet
+                Explorer 5.5
+              </td>
+              <td>Win 95+</td>
+              <td>5.5</td>
+              <td>
+                <div class="button_TG ml-3 d-flex " > 
+                  <button class="btn btn-xs btn-primary mr-4"><a class="nav-link active text-white" href="#revenue-chart" data-toggle="tab"><i class="bi bi-eye"></i> Xem Chi Tiết</a></button>
+                  <button class="btn btn-xs btn-success mr-4"><a class="nav-link active text-white" href="#revenue-chart" data-toggle="tab"><i class="bi bi-pencil"></i> Sửa</a></button>
+                  <button class="btn btn-xs btn-danger"><a class="nav-link active text-white" href="#revenue-chart" data-toggle="tab"><i class="bi bi-trash3"></i> Xóa</a></button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>Trident</td>
+              <td>Internet
+                Explorer 6
+              </td>
+              <td>Win 98+</td>
+              <td>6</td>
+              <td>
+                <div class="button_TG ml-3 d-flex " > 
+                  <button class="btn btn-xs btn-primary mr-4"><a class="nav-link active text-white" href="#revenue-chart" data-toggle="tab"><i class="bi bi-eye"></i> Xem Chi Tiết</a></button>
+                  <button class="btn btn-xs btn-success mr-4"><a class="nav-link active text-white" href="#revenue-chart" data-toggle="tab"><i class="bi bi-pencil"></i> Sửa</a></button>
+                  <button class="btn btn-xs btn-danger"><a class="nav-link active text-white" href="#revenue-chart" data-toggle="tab"><i class="bi bi-file-plus"></i> Xóa</a></button>
+                </div>
+              </td>
+            </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th>stt</th>
+                    <th>Tiêu đề</th>
+                    <th>Vị Trí </th>
+                    <th>Mô tả</th>
+                    <th>Thao tác</th>
+                  </tr>
+            </tfoot>
+          </table>
+        </div>
+        <!-- /.card-body -->
+      </div>
+    </section>
+</div>
+{% endblock contentwrapper %}

@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{% block title %}{% endblock title %}</title>
+    
+    <!-- Tell the browser to be responsive to screen width -->
+    {% include "admin/include/base_css.html" %}
+    
+
+    {% block pagecss %}{% endblock pagecss %}
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+  </head>
+  <body class="hold-transition sidebar-mini layout-fixed">
+    <div class="wrapper w-100">
+     {% include "admin/include/header_nav.html" %}
+
+      <!-- Main Sidebar Container -->
+      {% include "admin/include/aside_nav.html" %}
+
+      <!-- Content Wrapper. Contains page content -->
+      <div class="content-wrapper">
+      {% block contentwrapper %}{% endblock contentwrapper %}
+      </div>
+      <!-- /.content-wrapper -->
+
+      <!-- Control Sidebar -->
+      <aside class="control-sidebar control-sidebar-dark">
+        <!-- Control sidebar content goes here -->
+      </aside>
+      <!-- /.control-sidebar -->
+    </div>
+    <!-- ./wrapper -->
+    {% block pagescripts %}{% endblock pagescripts %}
+    {% include "admin/include/base_scripts.html" %}
+  </body>
+</html>

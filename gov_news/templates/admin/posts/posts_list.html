@@ -1,0 +1,105 @@
+{% extends 'admin/base.html' %} {% load static %} {% load i18n admin_urls admin_list %} {% block contentwrapper %}
+<!-- Content Header (Page header) -->
+<div class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1 class="m-0 text-dark">
+          Tin Tức <a href="{% url 'create_post' %}"><i class="bi bi-file-plus text-primary"></i></a>
+        </h1>
+      </div>
+
+      <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+          <li class="breadcrumb-item"><a href="#">Home</a></li>
+        </ol>
+      </div>
+      <!-- /.col -->
+    </div>
+    <div class="overview small-box p-2">
+      Tổng quan:
+      <ul>
+        <li><a href="">{{ posts.count }}</a> bài viết</li>
+        <li><a href="">{{ published_count }}</a> đã xuất bản</li>
+        <li><a href="">{{ pending_count }}</a> đang chờ duyệt</li>
+        <li><a href="">{{ draft_count }}</a> bản nháp</li>
+        <li><a href="">{{ other_count }}</a> bài khác</li>
+        <li><a href="">{{deleted_count}}</a> hủy xuất bản</li>
+      </ul>
+    </div>
+    <!-- /.row -->
+  </div>
+  <!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+<!-- Main content -->
+<section class="content">
+  <div class="card">
+    <div class="card-header bg-warning">
+      <h3 class="card-title">Danh Sách Tin Tức</h3>
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body">
+      <table id="post_list" class="table table-bordered table-striped">
+        <thead>
+          <tr>
+            <th>Stt</th>
+            <th class="col-3">Tiêu đề</th>
+            <th>Tác giả</th>
+            <th>Ngày đăng</th>
+            <th>Trạng thái</th>
+            <th>Thao tác</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for post in posts %}
+          <tr>
+            <td>{{ forloop.counter }}</td>
+            <td class="p-0 m-0"><p class="multi-truncate">{{ post.post_title }}</p></td>
+            <td class="">{{ post.post_author.display_name }}</td>
+            {# Lấy tên tác giả thay vì ID tác giả #}
+            <td>{{ post.post_date| date:"d/m/Y" }}</td>
+            <td><p class="multi-truncate">{{ post.post_name}}</p></td>  
+            <td>
+              <div class="button_TG ml-3 d-flex">
+                <button class="btn btn-xs btn-primary mr-4" data-toggle="tooltip" data-placement="top" title="Xem bài đăng">
+                  <a class="nav-link active text-white" href=""><i class="bi bi-eye"></i></a>
+                </button>
+                <button class="btn btn-xs btn-success mr-4" data-toggle="tooltip" data-placement="top" title="Sửa ">
+                  <a class="nav-link active text-white" href="{% url 'edit_post' post.id %}"><i class="bi bi-pencil"></i> </a>
+                </button>
+                <button class="btn btn-xs btn-danger" data-toggle="tooltip" data-placement="top" title="Hủy bài đăng">
+                  <a class="nav-link active text-white" href="{% url 'delete_post' post.id %}"><i class="bi bi-trash3"></i> </a>
+                </button>
+              </div>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+        <tfoot>
+          <tr>
+            <th>Stt</th>
+            <th>Tiêu đề</th>
+            <th>Tác giả</th>
+            <th>Ngày đăng</th>
+            <th>Trạng thái</th>
+            <th>Thao tác</th>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+    <!-- /.card-body -->
+  </div>
+</section>
+<script>
+  $(function () {
+    $("#post_list").DataTable({
+      responsive: true,
+      autoWidth: false,
+    });
+  });
+  $(function () {
+    $('[data-toggle="tooltip"]').tooltip();
+  });
+</script>
+{% endblock contentwrapper %}

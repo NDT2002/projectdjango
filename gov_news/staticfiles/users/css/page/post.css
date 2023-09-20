@@ -1,0 +1,110 @@
+.post_list{
+    padding: .5rem 1rem;
+    box-shadow: 0px -5px 8px rgb(151, 151, 151);
+}
+.search-date {
+    margin: 0 auto;
+    max-width: 50%;
+    max-height: 50%;
+}
+.search-lable {
+    font-weight: bold;
+    font-size: 12px;
+    padding: 8px;
+}
+.form-search {
+    display: block !important;
+    width: 100% !important;
+    height: 34px !important;
+    padding: 6px 3px !important;
+    font-size: 14px !important;
+    border: 1px solid #ccc !important;
+
+}
+.btn-search {
+    background-color: #337ab7;
+    height: 24px;
+    position: relative;
+    top: 4px;
+    width: 56px;
+    left: 43px;
+    border: 1px solid !important;
+    border-color: #C8C9CA #9E9E9E #9E9E9E #C8C9CA;
+    background: linear-gradient(#ffffff, #f2f2f2, #dedede, #d9d9d9);
+    Font-size: 11px!important;
+    font-weight: bold;
+    color: #2c6c97 !important;
+    padding: 3px !important;
+}
+
+
+
+.pagination{
+ padding-top: 25px;
+ display: flex;
+ justify-content: center;
+}
+.page-current{
+    border: 2px #0099ff solid;
+    border-radius: 15%;
+    padding: 5px 10px;
+    font-weight: bold;
+    color:#0099ff;
+
+}
+.page_navigate{
+    color:gray;
+    padding: 11px;
+    
+}
+.page_navigate:hover{
+    color: #ffffff;
+    text-decoration: none;
+    background-color: #0099ff;
+    border: 1px #0099ff solid;
+    border-radius: 15%;
+    padding: 5px 10px;
+}
+.page-current:hover{
+    text-decoration: none;
+    
+}
+.navigate{
+    border: 1px black solid;
+    border-radius: 5%;
+    padding: 5px;
+    color: rgb(0, 0, 0);
+}
+.navigate:hover{
+    text-decoration: none;
+    color:  #0099ff;
+    border: 1px #0099ff solid;
+
+
+}
+
+
+
+
+.post_list_item img{
+    display: inline-block;
+    max-height: 8rem;
+}
+.content-first{
+    color: rgb(186, 0, 2);
+    text-decoration: none;
+}
+.content-first:hover{
+    text-decoration: none;
+}
+
+.post-desc{
+    display: -webkit-box;
+    margin: 0px auto;
+    font-size: 15px;
+    line-height: 17px;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

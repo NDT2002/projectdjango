@@ -1,0 +1,98 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+
+}
+
+.login_main {
+    background-color: rgba(255, 255, 255, 75%);
+    box-shadow: -20px 20px 27px rgb(255 0 0 / 30%);
+    border-radius: 13px;
+    overflow: hidden;
+    
+}
+
+.row{
+    display: flex;
+}
+
+.login_form {
+    
+    flex: 1;
+    padding: 20px;
+}
+.img_login {
+    align-items: center;
+    display: flex;
+    background-color: white;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    font-weight: bold;
+    margin-bottom: 0px !important;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: 90%;
+    margin: 0;
+    border: none;
+    border-bottom: 1px solid #898989; /* Thay đổi màu sắc của gạch chân tại đây */
+    background: transparent; /* Loại bỏ nền của input */
+    outline: none; /* Loại bỏ viền xung quanh input khi được nhấn */
+}
+
+.checkbox-group {
+    display: flex;
+    align-items: center;
+}
+
+input[type="checkbox"] {
+    margin-right: 5px;
+}
+
+.login-button {
+    background-color: #007BFF;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.login-button:hover {
+    background-color: #0056b3;
+}
+
+.forgot-password {
+    text-align: center;
+    margin-top: 10px;
+}
+
+a {
+    text-decoration: none;
+    color: #007BFF;
+}
+
+@media screen and (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        width: 80%;
+    }
+    .left, .right {
+        width: 100%;
+        padding: 10px;
+    }
+} 
