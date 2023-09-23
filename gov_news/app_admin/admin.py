@@ -5,7 +5,6 @@ from . import models
 # Register your models here.
 admin.site.register(models.Post)
 admin.site.register(models.Term)
-admin.site.register(models.TermTaxonomy)
 admin.site.register(models.TermRelationship)
 admin.site.login_template = 'admin/login.html'
 admin.site.index_template = 'admin/base_site.html'

@@ -78,9 +78,9 @@
               <!-- select -->
               <div class="form-group">
                 <label>Danh mục</label>
-                <select class="form-control input-box" name="taxonomies">
-                  {% for tt in taxonomies %}
-                  <option value="{{tt.id}}">{{tt.term_id.name}} - {{tt.taxonomy}}</option>
+                <select class="form-control input-box" name="term">
+                  {% for term in terms %}
+                  <option value="{{term.id}}">{{term.name_with_indent}}</option>
                   {% endfor %}
 
                   <!-- Thêm các giá trị khác tùy theo nhu cầu của bạn -->
@@ -100,11 +100,18 @@
                 </select>
               </div>
             </div>
+            <div class="col-sm-6">
+              <!-- select -->
+              <div class="p-3">
+                <input type="checkbox" class="form-check-input" name='comment_status' id="commentStatusCheckbox" checked>
+                <label class="form-check-label" for="commentStatusCheckbox"> Cho phép Bình luận</label>
+            </div>
+            </div>
             <div class="col-sm-12">
               <!-- text input -->
               <div class="form-group">
                 <label>Liên kết tĩnh: <span class='text-danger'>(*)</span></label>
-                <input type="text" class="form-control input-box" name="post_name" value="{% url 'news_list' %}/" placeholder="Enter ..." />
+                <input type="text" class="form-control input-box" name="post_name" id="post_name" value="/tin-tuc/" placeholder="Nhập post name ..." />
                 <div class="progress" style='height:.5rem'>
                   <div class="progress-bar" id="post_name_progress" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
@@ -114,7 +121,7 @@
               <!-- text input -->
               <div class="form-group">
                 <label>Tiêu Đề:<span class='text-danger'>(*)</span></label>
-                <input type="text" class="form-control input-box" name="post_title" placeholder="Enter ..." />
+                <input type="text" class="form-control input-box" name="post_title" id='post_title' placeholder="Enter ..." />
                 <div class="progress" style='height:.5rem'>
                   <div class="progress-bar" id="post_title_progress" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
               </div>
@@ -135,6 +142,13 @@
               </div>
             </div>
             <div class="col-sm-12 form-group">
+              <label class="col-form-label" for="">Từ khóa:</label>
+              <div class="btn btn-primary" data-toggle="modal" data-target="#myModal">Mở bảng chọn</div>
+              <div class="btn" data-toggle="modal" data-target="#createModal"><i class="bi bi-file-plus text-primary"></i> thêm mới</div>
+              <div class="col-12" id="selectedValues"></div>
+            </div>
+            
+            <div class="col-sm-12 form-group">
               <label class="col-form-label" for="image">Hình ảnh đại diện:</label>
               <div class=" d-flex align-items-center">
                 <label class="picture" for="post_image" tabindex="0">
@@ -154,6 +168,62 @@
     </div>
     <!-- /.card -->
   </section>
+  <div class="modal fade" id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Chọn các thẻ</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="valueSelectionForm">
+                  {% for tag in tags %}
+                  <div class="form-check">
+                      <input name='tags_val' type="checkbox" class="form-check-input tag-check" id="{{tag.id}}" value="{{tag.id}}">
+                      <label class="form-check-label" for="{{tag.id}}">{{tag.name}}</label>
+                  </div>
+                  {% endfor %}
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                <button type="button" class="btn btn-primary" onclick="cloneSelectedValues()">Chọn</button>
+            </div>
+        </div>
+    </div>
+</div>
+  <div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="createModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <form method="post" action="{% url 'create_tag' %}">
+          <div class="modal-header bg-blue">
+            <h5 class="modal-title" id="createModalLabel">Thêm Chuyên Mục Mới</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            {% csrf_token %}
+            <div class="form-group">
+              <!-- Tên Danh Mục -->
+              <div class="form-group">
+                <label>Tên thẻ:</label>
+                <input type="text" class="form-control" name="name" id="name" placeholder="Nhập tên danh mục ..." />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="description">Mô tả:</label>
+              <textarea class="form-control input-box" rows="2" id="description" name="description" placeholder="Enter ..."></textarea>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+            <button type="submit" id="saveBtn" class="btn btn-primary">Lưu</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
 {% endblock contentwrapper %} {% block pagescripts %}
 <script>
   CKEDITOR.replace("content");
@@ -186,7 +256,59 @@
     }
   });
 
-  
+  const categoryNameInput = document.getElementById("post_title");
+  const slugInput = document.getElementById("post_name");
+  categoryNameInput.addEventListener("input", updateSlug);
+
+  function updateSlug() {
+    const categoryName = categoryNameInput.value;
+    // Chuyển đổi chuỗi tiếng Việt có dấu thành không dấu
+    const slugValue = slugify(categoryName.trim());
+    slugInput.value ='/tin-tuc/'+ slugValue;
+
+  }
+
+  // Hàm chuyển đổi dấu tiếng Việt sang không dấu
+  function slugify(str) {
+    str = str.toLowerCase();
+    str = str.replace(/\s+/g, "-");
+    str = str.replace(/[àáạảãâầấậẩẫăằắặẳẵ]/g, "a");
+    str = str.replace(/[èéẹẻẽêềếệểễ]/g, "e");
+    str = str.replace(/[ìíịỉĩ]/g, "i");
+    str = str.replace(/[òóọỏõôồốộổỗơờớợởỡ]/g, "o");
+    str = str.replace(/[ùúụủũưừứựửữ]/g, "u");
+    str = str.replace(/[ỳýỵỷỹ]/g, "y");
+    str = str.replace(/đ/g, "d");
+    return str;
+  }
+  function cloneSelectedValues() {
+    // Lấy tất cả các input checkbox đã được chọn
+    const selectedCheckboxes = document.querySelectorAll('input.tag-check[type="checkbox"]:checked');
+
+    // Tạo bản sao của các form-check đã chọn và thêm chúng vào vị trí mong muốn
+    selectedCheckboxes.forEach(checkbox => {
+        const formCheckContainer = checkbox.closest('.form-check');
+        const clonedFormCheck = formCheckContainer.cloneNode(true);
+
+        // Loại bỏ thuộc tính "checked" để không bị chọn lại
+        //clonedFormCheck.querySelector('input[type="checkbox"]').removeAttribute('checked');
+
+        const clonedInputs = clonedFormCheck.querySelectorAll('input, select, textarea');
+        clonedInputs.forEach(input => {
+            input.setAttribute('readonly', 'readonly');
+        });
+
+        // Thêm vào vị trí mong muốn (trong ví dụ này, thêm vào #selectedValues)
+        document.getElementById('selectedValues').appendChild(clonedFormCheck);
+    });
+
+    // Đóng modal
+    $('#myModal').modal('hide');
+    selectedCheckboxes.forEach(checkbox => {
+      $(checkbox).closest('.form-check').hide(); // Ẩn checkbox
+      //$(checkbox).closest('.form-check').remove(); // Loại bỏ khỏi DOM
+  });
+}
 </script>
 <script src="{% static 'js/pages/post.js' %}"></script>
 {% endblock pagescripts %}

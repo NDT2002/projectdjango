@@ -1,4 +1,4 @@
-{% extends 'base.html' %} {% load static %} {% block title %}
+{% extends 'base_app.html' %} {% load static %} {% block title %}
 <title>Tin tổng hợp</title>
 {% endblock title %} {% block content %}
 <section class="row m-0 new-detail">
@@ -103,7 +103,7 @@
             
           </a>
         </div>
-        <div class="col-md-9 pr-0">
+        <div class="col-md-9 pe-0 ps-2">
           <a class="font-weight-bold content-first d-block" href="{% url 'news_detail' post.id %}">{{post.post_title}} </a>
           <span class="publish-date text-muted font-weight-bold">Ngày {{ post.post_date|date:"j" }} tháng {{ post.post_date|date:"n" }} năm {{ post.post_date|date:"Y" }}</span>
           <div class="post-desc p-0">{{ post.post_excerpt }}</div>
@@ -186,7 +186,7 @@
           </div>
           <a name="" id="" class="btn btn-primary" href="#" role="button">Gửi Bình Luận</a>
         </form>
-        <div class="bottom-panel pl-2">Ý KIẾN BẠN ĐỌC (0)</div>
+        <div class="bottom-panel ps-2">Ý KIẾN BẠN ĐỌC (0)</div>
       </div>
     </div>
   </div>

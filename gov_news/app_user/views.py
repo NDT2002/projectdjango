@@ -15,7 +15,11 @@ def signup(request):
 def news(request, post_id):
     # Lấy bài viết cụ thể hoặc trả về 404 nếu không tìm thấy
     post = get_object_or_404(models.Post, pk=post_id)
-    return render(request, 'newspage/newsdetail.html', {'post': post})
+    categories = models.TermRelationship.objects.get(post=post_id)
+    # Lấy danh sách 5 bài viết cùng danh mục với bài viết đã chọn
+    related_posts = models.Post.objects.filter(termrelationship__term_id=categories.term)[:5]
+    
+    return render(request, 'newspage/newsdetail.html', {'post': post,'related_posts':related_posts, 'term':categories})
 
 def news_list(request):
      # Truy vấn tất cả bài viết

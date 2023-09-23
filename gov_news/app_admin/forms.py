@@ -3,18 +3,15 @@ from . import models
 class PostForm(forms.ModelForm):
     class Meta:
         model = models.Post
-        fields = ['post_title','post_name','post_excerpt', 'post_content', 'post_author', 'post_status', 'post_type','post_image']
+        fields = ['post_author', 'post_content', 'post_image', 'post_title', 'post_excerpt', 'post_status', 'comment_status', 'post_name', 'post_type']
 class TermForm(forms.ModelForm):
     class Meta:
         model = models.Term
-        fields = ['name', 'slug', 'term_group']
-
-class TermTaxonomyForm(forms.ModelForm):
+        fields = ['name', 'slug', 'parent','term_group','description']
+class TagForm(forms.ModelForm):
     class Meta:
-        model= models.TermTaxonomy
-        fields=['term_id','taxonomy', 'parent']
-
-
+        model = models.Tag
+        fields = ['name','description']
 class UserForm(forms.ModelForm):
     class Meta:
         model = models.CustomUser

@@ -1,11 +1,11 @@
-{% extends 'admin/base.html' %} {% load static %} {% load i18n admin_urls admin_list %} {% block title %}Quản lý Chuyên mục{% endblock title %} {% block contentwrapper %}
+{% extends 'admin/base.html' %} {% load static %} {% load i18n admin_urls admin_list %} {% block title %}Quản lý Thẻ{% endblock title %} {% block contentwrapper %}
 <!-- Content Header (Page header) -->
 <div class="content-header">
   <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-sm-6">
         <h1 class="m-0 text-dark">
-          Chuyên mục <button class="btn" data-toggle="modal" data-target="#createModal"><i class="bi bi-file-plus text-primary"></i> thêm mới</button>
+          Danh sách thẻ <button class="btn" data-toggle="modal" data-target="#createModal"><i class="bi bi-file-plus text-primary"></i> thêm mới</button>
         </h1>
       </div>
       <div class="col-sm-6">
@@ -25,7 +25,7 @@
   <div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="createModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
-        <form method="post" action="{% url 'create_term' %}">
+        <form method="post" action="{% url 'create_tag' %}">
           <div class="modal-header bg-blue">
             <h5 class="modal-title" id="createModalLabel">Thêm Chuyên Mục Mới</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -37,33 +37,9 @@
             <div class="form-group">
               <!-- Tên Danh Mục -->
               <div class="form-group">
-                <label>Tên Danh Mục:</label>
+                <label>Tên thẻ:</label>
                 <input type="text" class="form-control" name="name" id="name" placeholder="Nhập tên danh mục ..." />
               </div>
-            </div>
-            <div class="form-group">
-              <!-- Slug -->
-              <div class="form-group">
-                <label>Slug:</label>
-                <input type="text" class="form-control" name="slug" id="slug" readonly />
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="parent">Danh Mục cha:</label>
-              <select class="form-control" name="parent" id="parent">
-                <option value="">--Không chọn--</option>
-                {% for term in terms %}
-                <option value="{{ term.id }}">{{ term.name }}</option>
-                {% endfor %}
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="term_group">Nhóm Chuyên mục :</label>
-              <select class="form-control" name="term_group" id="term_group">
-                <option value="0">0</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-              </select>
             </div>
             <div class="form-group">
               <label for="description">Mô tả:</label>
@@ -78,10 +54,9 @@
       </div>
     </div>
   </div>
-
   <div class="card col-xl-12 col-table m-0 p-3 pb-0">
     <div class="card-header bg-blue mb-1">
-      <h3 class="card-title">Danh sách phân loại danh mục</h3>
+      <h3 class="card-title">Danh sách thẻ </h3>
       {% if form.errors %}
       <div class="alert alert-danger">
         <strong>Có lỗi xảy ra:</strong>
@@ -97,31 +72,29 @@
       <thead>
         <tr>
           <th class="col-1">Stt</th>
-          <th class="">Tên chuyên mục</th>
-          <th>Slug</th>
-          <th hidden></th>
+          <th class="">Tên thẻ</th>
+          <th>Mô tả</th>
           <th>Thao tác</th>
         </tr>
       </thead>
       <tbody>
-        {% for term in terms %}
+        {% for tag in tags %}
         <tr>
           <td>{{ forloop.counter }}</td>
-          <td class="">{{ term.name_with_indent }}</td>
-          <td class="">{{ term.slug }}</td>
-          <td class="" hidden>{{ term.parent.id }}</td>
+          <td class="">{{ tag.name}}</td>
+          <td class="">{{ tag.description }}</td>
           <td>
             <div class="button_TG ml-3 d-flex">
               <button class="btn btn-xs btn-primary mr-4" data-toggle="tooltip" data-placement="top" title="Xem">
-                <a class="nav-link active text-white" href="{% url 'detail_term' term.id %}"><i class="bi bi-eye"></i></a>
+                <a class="nav-link active text-white" href=""><i class="bi bi-eye"></i></a>
               </button>
-              {% if term.deleted_at %}
+              {% if tag.deleted_at %}
               <button class="btn btn-xs btn-warning" data-toggle="tooltip" data-placement="top" title="Khôi phục">
-                <a class="nav-link active text-white" href="{% url 'restore_term' term.id %}"><i class="bi bi-arrow-counterclockwise"></i> </a>
+                <a class="nav-link active text-white" href="{% url 'restore_tag' tag.id %}"><i class="bi bi-arrow-counterclockwise"></i> </a>
               </button>
               {% else %}
               <button class="btn btn-xs btn-danger" data-toggle="tooltip" data-placement="top" title="Hủy bài đăng">
-                <a class="nav-link active text-white" href="{% url 'delete_term' term.id %}"><i class="bi bi-trash3"></i> </a>
+                <a class="nav-link active text-white" href="{% url 'delete_tag' tag.id %}"><i class="bi bi-trash3"></i> </a>
               </button>
               {% endif %}
             </div>
@@ -132,10 +105,8 @@
       <tfoot>
         <tr>
           <th class="col-1">Stt</th>
-          <th class="">Tên chuyên mục</th>
-          <th>Slug</th>
-          <th hidden></th>
-
+          <th class="">Tên thẻ</th>
+          <th>Mô tả</th>
           <th>Thao tác</th>
         </tr>
       </tfoot>
@@ -182,58 +153,11 @@
     return str;
   }
   $(function () {
-    $("#table").DataTable({
-      responsive: true,
-      autoWidth: false,
-      language: {
-        lengthMenu: "Hiển thị : _MENU_  hàng",
-        zeroRecords: "Không tìm thấy kết quả nào",
-        info: "Trang _PAGE_ của _PAGES_",
-        infoEmpty: "Không có dữ liệu",
-        infoFiltered: "(được lọc từ tổng số _MAX_ hàng)",
-        search: "Tìm kiếm:",
-        paginate: {
-          first: "Đầu",
-          last: "Cuối",
-          next: "Tiếp",
-          previous: "Trước",
-        },
-      },
-    });
-  });
 
   $(document).ready(function () {
     // Sự kiện click cho nút chỉnh sửa
-    $(".btn-edit").on("click", function () {
-      // Lấy thông tin danh mục từ hàng trường tương ứng
-      var row = $(this).closest("tr");
-      var title = row.find("td:eq(1)").text();
-      var slug = row.find("td:eq(2)").text();
-      var group = row.find("td:eq(3)").text();
-      var termId = $(this).data("term");
-
-      var newUrl = "{% url 'update_term' 0 %}".replace("0", termId);
-      $("#modal-form").attr("action", newUrl);
-      // Đặt thông tin danh mục vào modal
-      $("#modal-default-title").val(title);
-      $("#modal-slug").val(slug);
-      $("#modal-term-group").val(group);
-      // Hiển thị modal
-      var groupValue = parseInt(group);
-      console.log(group);
-      // Lặp qua tất cả các tùy chọn trong select và đặt thuộc tính selected
-      $("#modal-term-group option").each(function () {
-        var optionValue = parseInt($(this).val());
-        if (optionValue === groupValue) {
-          $(this).prop("selected", true);
-        } else {
-          $(this).prop("selected", false);
-        }
-      });
-      $("#modal-default").modal("show");
-    });
     $(function () {
-      $("#term-table").DataTable({
+      $("#tag-table").DataTable({
         responsive: true,
         autoWidth: false,
         language: {

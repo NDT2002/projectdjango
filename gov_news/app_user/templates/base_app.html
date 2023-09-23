@@ -1,0 +1,49 @@
+{% load static %}
+<!doctype html>
+<html lang="vi">
+<head>
+  <title>{% block title %}{% endblock title %}</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    {% include "include_app/base_css.html" %}
+    {% block pageLink %}{% endblock pageLink %}
+    
+    <meta name="google-site-verification" content="y8PMKPH-UzpVdjHXzQjJ4oUEPfqLSWZl_EyOz5P02vc" />
+    <!-- Open Graph data -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="{% block site_name %}{% endblock site_name %}" />
+    <meta property="og:title" content="{% block site_title %}{% endblock site_title %}" />
+    <meta property="og:url" content="{% block site_url %}{% endblock site_url %}" />
+    <meta property="og:image" content="{% block site_image %}{% endblock site_image %}" />
+    <meta property="og:description" content="{% block site_description %}{% endblock site_description %}" />
+    <meta property="article:tag" content="{% block site_tag %}{% endblock site_tag %}" />
+    <meta name="keywords" content="bl" />
+    <meta property="article:author" content="{% block author %}{% endblock author %}" />
+    <!--end Open Graph data -->
+</head>
+
+<body>
+  <header class="img-banner">
+    {% include "include_app/header_nav.html" %}
+  </header>
+  <main class='container'>
+    <section class="row m-0 content-top">
+        <div class="col-12 col-md-3">
+          <p class="font-weight-bold m-0">{% now "d M Y H:i" %}</p>
+        </div>
+        <div class="col-12 col-md-9 colrightcenter overflow-hidden">
+          <div class="marquee">Kỷ niệm 78 năm Ngày Cách mạng tháng Tám thành công (19/8/1945 - 19/8/2023) và Quốc khánh nước CHXHCN Việt Nam (02/9/1945 - 02/9/2023)!</div>
+        </div>
+      </section>
+    {% block content %}{% endblock content %}
+  </main>
+  <footer class='footer-setting'>
+    {% include "include_app/base_footer.html" %}
+    &copy; {{ year }} 
+  </footer>
+  <!-- Bootstrap JavaScript Libraries -->
+  {% include "include_app/base_scripts.html" %}
+</body>
+
+</html>

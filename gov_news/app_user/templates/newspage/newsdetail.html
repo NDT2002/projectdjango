@@ -1,8 +1,17 @@
-{% extends 'base.html' %} {% load static %} 
+{% extends 'base_app.html' %} {% load static %} 
 {% block title %}
-<title>{{ post.post_title }}</title>
+{{ post.post_title }}
 {% endblock title %}
 {% block content %}
+<style>
+  a{
+    text-decoration:none !important;
+  }
+  .content-detail img{
+    display:block;
+    width:100% !important;
+  }
+</style>
 <section class="row m-0 new-detail">
   <div class="col-md-2 col-12 aside-left mt-2 p-0">
     <div class="col-left mb-2">
@@ -91,53 +100,14 @@
   <div class="col-md-8 col-12 mt-2">
     <div class="news-main">
       <div class="title-detail">
-        <p class="text-uppercase p-2">Hoạt động gdpl - Địa phương</p>
+        <p class="text-uppercase p-2">{{term.term.name}}</p>
       </div>
-      {% comment %} <div class="content-detail px-3 pb-2 ">
-        <div class="header-title ">
-          <h1 class="">Hội nghị phổ biến một số Luật mới ban hành tại huyện Đắk Glong</h1>
-          <div class="top-panel pl-2 text-muted">Thứ tư, 30/08/2023, 10:55</div>
-          <div class="second-title text-justify">
-            Ngày 02/8, Hội đồng phối hợp phổ biến giáo dục pháp luật huyện Đắk Glong tổ chức hội nghị phổ biến Luật Thực hiện Dân chủ ở cơ sở năm 2022 và Luật Phòng, chống bạo lực gia đình năm 2022;
-            cấp phát Luật Thanh tra năm 2022 và Luật Thi đua, khen thưởng năm 2022.
-          </div>
-        </div>
-        <p>
-          Tham dự có lãnh đạo các phòng, ban, đơn vị, lãnh đạo Đảng ủy, HĐND-UBND các xã; các Báo cáo viên pháp luật, tuyên truyền viên cơ sở, công an xã, xã đội, công chức văn hóa xã, công chức văn
-          phòng – thống kê xã, công chức tư pháp – hộ tịch xã.
-        </p>
-        <div class="text-center">
-          <img class="d-block w-100" src="{% static 'user/img/carousel1.png' %}" />
-          <i class="text-muted">Toàn cảnh Hội nghị</i>
-        </div>
-        <p>
-          Phát biểu khai mạc tại Hội nghị, Phó Chủ tịch UBND huyện, Chủ tịch Hội đồng phối hợp phổ biến giáo dục pháp luật huyện Đoàn Văn Phương khẳng định: Việc triển khai tuyên truyền, phổ biến,
-          quán triệt các nội dung cơ bản của một số Luật mới ban hành trên địa bàn huyện nhằm nâng cao chất lượng hiệu quả công tác tuyên truyền, phổ biến giáo dục pháp luật và ý thức trách nhiệm của
-          mỗi cán bộ, công chức, viên chức trong việc thực hiện và chấp hành pháp luật là rất cần thiết. Để các Luật mới đi vào cuộc sống, đề nghị lãnh đạo các phòng, ban, đơn vị và UBND các xã lĩnh
-          hội chủ động tổ chức Hội nghị để tuyên truyền, phổ biến đến cán bộ và Nhân dân nắm bắt được các nội dung cơ bản, quan trọng của Luật Thực hiện Dân chủ ở cơ sở năm 2022 và Luật Phòng chống
-          bạo lực gia đình năm 2022.
-        </p>
-
-        <p>
-          Tại hội nghị với tinh thần nghiêm túc, trách nhiệm, các đại biểu đã nghe ông Dương Tín Hòa - Trưởng phòng Văn bản và Phổ biến pháp luật, Sở Tư pháp - Báo cáo viên cấp tỉnh quán triệt các nội
-          dung cơ bản của Luật Thực hiện dân chủ ở cơ sở năm 2022; Luật Phòng, chống bạo lực gia đình năm 2022. Cụ thể Luật Thực hiện dân chủ ở cơ sở năm 2022 có hiệu lực thi hành từ ngày 1/7/2023,
-          bao gồm 91 điều quy định về nội dung, cách thức thực hiện dân chủ ở cơ sở, quyền và nghĩa vụ của công dân trong thực hiện dân chủ ở cơ sở và trách nhiệm của các cơ quan, đơn vị, tổ chức, cá
-          nhân trong việc bảo đảm thực hiện dân chủ ở cơ sở.
-        </p>
-
-        <p>
-          Luật Phòng, chống bạo lực gia đình năm 2022 gồm 6 chương, 56 điều, tăng 10 điều so với Luật năm 2007, trong đó có một số điểm mới như: Tiếp cận dựa trên quyền con người; chủ động phòng ngừa
-          bạo lực gia đình; các biện pháp bảo vệ, hỗ trợ, xử lý vi phạm trong phòng, chống bạo lực gia đình…
-        </p>
-
-        <p class="font-weight-bold text-right ">Nguyễn Hồng</p>
-      </div> {% endcomment %}
       <div class="content-detail px-3 pb-2">
         {% comment %} top content {% endcomment %}
         <div class="header-title ">
           <h1 class="">{{ post.post_title }}</h1>
           {% comment %} box date {% endcomment %}
-          <div class="top-panel pl-2 text-muted">{{ post.post_date }}</div>
+          <div class="top-panel ps-2 text-muted">{{ post.post_date }}</div>
           <div class="second-title text-justify">
             {{description_text}}
           </div>
@@ -146,45 +116,27 @@
 
           {{post.post_content|safe}}
         </div>
-        <p class="font-weight-bold text-right ">{{post.post_author.display_name}}</p>
+        <p class="fw-bold text-right ">{{post.post_author.display_name}}</p>
       </div>
     </div>
 
     <div class="news-other">
       <div class="news-other-title">
-        <p class="text-uppercase text-danger font-weight-bold p-2 m-0">Tin Liên Quan</p>
+        <p class="text-uppercase text-danger fw-bold p-2 m-0">Tin Liên Quan</p>
       </div>
       <div class="content-second text-justify" >
         <ul class="news-other-list ">
-          <li>
-            <a href="#"> Co.opmart, Co.opxtra tăng khuyến mãi, lượng hàng từ 20 – 30% dịp lễ 2/9 </a>
-            <span class="text-muted">(30/08)</span>
+          {% for new in related_posts %}<li>
+            <a href="#"> {{new.post_title}}</a>
+            <span class="text-muted">({{new.post_date| date:"d/m/Y"}})</span>
           </li>
-          <li>
-            <a href="#"> Khai mạc Hội chợ Quốc tế Đồ gỗ và Mỹ nghệ xuất khẩu Việt Nam ASEAN 2023 </a>
-            <span class="text-muted">(29/08)</span>
-          </li>
-          <li>
-            <a href="#"> Nghiên cứu cập nhật hoàn thiện các nội dung trong Đồ án quy hoạch xử lý chất thải rắn TPHCM đến năm 2025, tầm nhìn đến 2050 </a>
-            <span class="text-muted">(29/08)</span>
-          </li>
-          <li>
-            <a href="#">
-              Xây dựng Nghị quyết quy định tiêu chí, tiêu chuẩn, lộ trình, điều kiện, định mức, đơn giá, giá đặt hàng đối với các nhà đầu tư chuyển đổi công nghệ sang xử lý chất thải rắn sinh hoạt có
-              thu hồi năng lượng
-            </a>
-            <span class="text-muted">(28/08)</span>
-          </li>
-          <li>
-            <a href="#"> Tăng cường công tác quản lý, sử dụng đèn, còi phát tín hiệu ưu tiên theo các phương tiện xe ô tô cứu thương </a>
-            <span class="text-muted"> (28/08)</span>
-          </li>
+          {% endfor %}
         </ul>
       </div>
     </div>
      <div class="box-comment mb-3">
         <div class="box-comment-title">
-            <p class="text-uppercase text-danger font-weight-bold p-2 m-0">Bình Luận</p>
+            <p class="text-uppercase text-danger fw-bold p-2 m-0">Bình Luận</p>
         </div>
         <div class="box-comment-form ">
             <form class="form-group">
@@ -194,7 +146,7 @@
                 </div>
                 <a name="" id="" class="btn btn-primary " href="#" role="button">Gửi Bình Luận</a>
             </form>
-            <div class="bottom-panel pl-2 ">Ý KIẾN BẠN ĐỌC (0)</div>
+            <div class="bottom-panel ps-2 ">Ý KIẾN BẠN ĐỌC (0)</div>
         </div>
      </div>
   </div>
