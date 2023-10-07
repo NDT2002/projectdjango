@@ -24,40 +24,88 @@
 </div>
 <!-- /.content-header -->
 <!-- Main content -->
-<section class="content row mr-0">
-  {% for auth in author_data_list %}
-  <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch">
-    <div class="card bg-light">
-      <div class="card-header text-muted border-bottom-0">Tác giả</div>
-      <div class="card-body pt-0">
-        <div class="row">
-          <div class="col-7">
-            <h2 class="lead"><b>{{ auth.author.user_nicename }}</b></h2>
-            <p class="text-muted text-sm"><b>Job:</b>{{ auth.extended_data.job }}</p>
-            <p class="text-muted text-sm"><b>Description:</b> {{ auth.extended_data.description }}</p>
-            <ul class="ml-2 mb-0 fa-ul text-muted list-unstyled ">
-              <li class="small">
-                <span class="fa-li"><i class="fas fa-lg fa-building"></i></span> Address: {{ auth.extended_data.address }}
-              </li>
-              <li class="small">
-                <span class="fa-li"><i class="fas fa-lg fa-phone"></i></span> Phone:{{ auth.extended_data.phone }}
-              </li>
-            </ul>
-          </div>
-          <div class="col-5 text-center">
-            <img src="../../dist/img/user1-128x128.jpg" alt="" class="img-circle img-fluid" />
-          </div>
-        </div>
-      </div>
-      <div class="card-footer">
-        <div class="text-right">
-          <a href="#" class="btn btn-sm btn-primary"> <i class="fas fa-user"></i> Xem chi tiết </a>
-        </div>
-      </div>
+<section class="content">
+  <div class="card">
+    <div class="card-header bg-warning">
+      <h3 class="card-title"> Danh Sách Tác Giả</h3>
     </div>
+    <!-- /.card-header -->
+    <div class="card-body">
+      <table id="post_list" class="table table-bordered table-striped">
+        <thead>
+          <tr>
+            <th>Stt</th>
+            <th class="col-3">Tên tài khoản</th>
+            <th>Bút danh</th>
+            <th>Ngày đăng ký</th>
+            <th>Lần cuối đăng nhập</th>
+            <th>Thao tác</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for auth in author_data_list %}
+          <tr>
+            <td>{{ forloop.counter }}</td>
+            <td class="p-0 m-0"><p class="multi-truncate">{{ auth.author.username }}</p></td>
+            <td class="">{{ auth.author.display_name }}</td>
+            {# Lấy tên tác giả thay vì ID tác giả #}
+            <td>{{ auth.author.date_joined| date:"d/m/Y" }}</td>
+            <td><p class="multi-truncate">{{ auth.author.last_login| date:"d/m/Y" }}</p></td>
+            <td>
+              <div class="button_TG ml-3 d-flex">
+                <button class="btn btn-xs btn-success mr-4" data-toggle="tooltip" data-placement="top" title="Sửa ">
+                  <a class="nav-link active text-white" href="{% url 'edit_author' auth.author.id %}"><i class="bi bi-pencil"></i> </a>
+                </button>
+                {% if post.deleted_at %}
+                <button class="btn btn-xs btn-warning" data-toggle="tooltip" data-placement="top" title="Khôi phục">
+                  <a class="nav-link active text-white" href=""><i class="bi bi-arrow-counterclockwise"></i> </a>
+                </button>
+                {% else %}
+                <button class="btn btn-xs btn-danger" data-toggle="tooltip" data-placement="top" title="Hủy bài đăng">
+                  <a class="nav-link active text-white" href=""><i class="bi bi-trash3"></i> </a>
+                </button>
+                {% endif %}
+              </div>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+        <tfoot>
+          <tr>
+            <th>Stt</th>
+            <th class="col-3">Tên tài khoản</th>
+            <th>Bút danh</th>
+            <th>Ngày đăng ký</th>
+            <th>Lần cuối đăng nhập</th>
+            <th>Thao tác</th>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+    <!-- /.card-body -->
   </div>
-  {% endfor %}
 </section>
 
-
+<script>
+  $(function () {
+    $("#post_list").DataTable({
+      responsive: true,
+      autoWidth: false,
+      language: {
+        lengthMenu: "Hiển thị : _MENU_  hàng",
+        zeroRecords: "Không tìm thấy kết quả nào",
+        info: "Trang _PAGE_ của _PAGES_",
+        infoEmpty: "Không có dữ liệu",
+        infoFiltered: "(được lọc từ tổng số _MAX_ hàng)",
+        search: "Tìm kiếm:",
+        paginate: {
+          first: "Đầu",
+          last: "Cuối",
+          next: "Tiếp",
+          previous: "Trước",
+        },
+      },
+    });
+  });
+</script>
 {% endblock contentwrapper %}

@@ -7,13 +7,14 @@
   a{
     text-decoration:none !important;
   }
-  .content-detail img{
+  .content-detail img, .content-body p img{
     display:block;
     width:100% !important;
+
   }
 </style>
 <section class="row m-0 new-detail">
-  <div class="col-md-2 col-12 aside-left mt-2 p-0">
+  <div class="col-md-2 col-12 aside-left mt-2 p-0 d-none  d-lg-block">
     <div class="col-left mb-2">
       <div class="title-top">
         <p>Giới thiệu</p>
@@ -127,7 +128,7 @@
       <div class="content-second text-justify" >
         <ul class="news-other-list ">
           {% for new in related_posts %}<li>
-            <a href="#"> {{new.post_title}}</a>
+            <a href="{% url 'news_detail' new.id %}"> {{new.post_title}}</a>
             <span class="text-muted">({{new.post_date| date:"d/m/Y"}})</span>
           </li>
           {% endfor %}
@@ -139,18 +140,36 @@
             <p class="text-uppercase text-danger fw-bold p-2 m-0">Bình Luận</p>
         </div>
         <div class="box-comment-form ">
-            <form class="form-group">
+            <form class="form-group" method='post' action='{% url "news_comment" post.id %}'>
+              {% csrf_token %}
                 <div class="mb-3">
-                  <label for="" class="form-label"></label>
-                  <textarea class="form-control" name="" id="" rows="3" placeholder=" nhập bình luận tại đây..."></textarea>
+                  <label for="content" class="form-label"></label>
+                  <textarea class="form-control" name="content" id="content" rows="3" placeholder=" nhập bình luận tại đây..."></textarea>
                 </div>
-                <a name="" id="" class="btn btn-primary " href="#" role="button">Gửi Bình Luận</a>
+                {% if not user.is_authenticated %}
+                <button type="submit" name="" id="" class="btn btn-primary " disabled role="button">Gửi Bình Luận</button>
+                {% else %}
+                <button type="submit" name="" id="" class="btn btn-primary "  role="button">Gửi Bình Luận</button>
+                {% endif %}
             </form>
-            <div class="bottom-panel ps-2 ">Ý KIẾN BẠN ĐỌC (0)</div>
+            <div class="bottom-panel ps-2 ">Ý KIẾN BẠN ĐỌC ({{related_comment.count}})</div>
+            <div class="card-footer card-comments">
+              {% for comment in related_comment %}
+                  <div class="comment-text border-bottom">
+                    <div class="username w-100">
+                      <span class='fw-bold'>{{comment.author}}</span>
+                      <span class="text-muted float-end">{{comment.date|date:"d/m/Y"}}</span>
+                    </div><!-- /.username -->
+                    <span>{{comment.content}}</span>
+                  </div>
+              {% endfor %}
+              <!-- /.card-comment -->
+              <!-- /.card-comment -->
+            </div>
         </div>
      </div>
   </div>
-  <div class="col-md-2 col-12 aside-right mt-2 p-0">
+  <div class="col-md-2 col-12 aside-right mt-2 p-0 d-none  d-lg-block">
     <div class="col-left mb-2">
       <a href="#"> <img class="d-block w-100" src="{% static 'user/img/mapdaknong.jpg' %}" alt="col-left img" /> </a>
       <div class="title-top">

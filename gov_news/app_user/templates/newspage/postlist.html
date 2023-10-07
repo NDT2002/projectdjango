@@ -1,8 +1,8 @@
 {% extends 'base_app.html' %} {% load static %} {% block title %}
-<title>Tin tổng hợp</title>
+{{ter.name}}
 {% endblock title %} {% block content %}
 <section class="row m-0 new-detail">
-  <div class="col-md-2 col-12 aside-left mt-2 p-0">
+  <div class="col-md-2 col-12 d-none d-md-block aside-left mt-2 p-0">
     <div class="col-left mb-2">
       <div class="title-top">
         <p>Giới thiệu</p>
@@ -92,8 +92,8 @@
     </div>
     <div class="post_list">
       {% for post in posts %}
-      <div class="col-md-12 d-flex post_list_item">
-        <div class="col-md-3 p-0">
+      <div class="col-md-12 d-md-flex post_list_item">
+        <div class="col-md-3  p-0">
           <a href="{% url 'news_detail' post.id %}">
             {% if post.post_image %}
             <img style="width: 100%; height: 100%" src="{{ post.post_image.url }}" alt="Featured Image">
@@ -103,7 +103,7 @@
             
           </a>
         </div>
-        <div class="col-md-9 pe-0 ps-2">
+        <div class="col-md-9  pe-0 ps-2">
           <a class="font-weight-bold content-first d-block" href="{% url 'news_detail' post.id %}">{{post.post_title}} </a>
           <span class="publish-date text-muted font-weight-bold">Ngày {{ post.post_date|date:"j" }} tháng {{ post.post_date|date:"n" }} năm {{ post.post_date|date:"Y" }}</span>
           <div class="post-desc p-0">{{ post.post_excerpt }}</div>
@@ -144,7 +144,7 @@
     </div>
     <div class="news-other">
       <div class="news-other-title">
-        <p class="text-uppercase text-danger font-weight-bold p-2 m-0">Tin Liên Quan</p>
+        <p class="text-uppercase text-danger font-weight-bold p-2 m-0">Các Tin Khác</p>
       </div>
       <div class="content-second text-justify">
         <ul class="news-other-list">
@@ -190,7 +190,7 @@
       </div>
     </div>
   </div>
-  <div class="col-md-2 col-12 aside-right mt-2 p-0">
+  <div class="col-md-2 col-12 d-none d-md-block aside-right mt-2 p-0">
     <div class="col-left mb-2">
       <a href="#"> <img class="d-block w-100" src="{% static 'user/img/mapdaknong.jpg' %}" alt="col-left img" /> </a>
       <div class="title-top">

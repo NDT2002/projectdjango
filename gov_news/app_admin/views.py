@@ -1,9 +1,11 @@
 from django.shortcuts import get_object_or_404, render
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseNotFound, JsonResponse
+from django.urls import reverse
 from . import forms
 from . import models
 from django.utils import timezone
+from django.contrib.auth.hashers import make_password
 import pdb
 def post(request, filter=None, val=None ):
     posts_table=models.Post.objects.all()
@@ -49,7 +51,7 @@ def add_posts(request):
                 models.TagRelationship.objects.create(post=post, tag=tag)
             return redirect('post')  # Điều hướng đến trang danh sách bài viết sau khi thêm
     else:
-        form = models.PostForm()
+        form = forms.PostForm()
     return render(request, 'admin/posts/add_post.html', {'form': form})
 
 def edit_post(request,post_id):
@@ -238,15 +240,91 @@ def add_authors(request):
         if form.is_valid():
             user = form.save(commit=False)
             user.user_registered = timezone.now()
+            user.is_staff = True
+            user.password = make_password(form.cleaned_data['password'])
             user.save()
-            return redirect('author_list')
+            # Lấy dữ liệu từ form
+            
+
+            # Tạo hoặc cập nhật Usermeta
+            meta_data = [
+                ('job', request.POST.get('job')),
+                ('address', request.POST.get('address')),
+                ('phone', request.POST.get('phone')),
+                ('description', request.POST.get('description')),
+            ]
+
+            # Tạo hoặc cập nhật các giá trị meta_key và meta_value trong UserMeta
+            for meta_key, meta_value in meta_data:
+                usermeta, created = models.UserMeta.objects.get_or_create(user_id=user, meta_key=meta_key)
+                usermeta.meta_value = meta_value
+                usermeta.save()
+            return redirect('author')
     else:
         form = forms.UserForm()
     return render(request, 'admin/author/add_auth.html', {'form': form})
-def edit_author(request):
-    return render(request, 'admin/term/term_taxonomy.html')
-def update_author(request):
-    return render(request, 'admin/term/term_taxonomy.html')
+def edit_author(request,author_id):
+    author=get_object_or_404(models.CustomUser, id=author_id)
+    user_id = author  # Lấy user_id của người dùng
+    author_info = {}  #a Tạo từ điển cho thông tin mở rộng của người dùng
+
+        # Các metakey bạn muốn truy xuất
+    metakeys_to_retrieve = ["address", "phone", "description", "job"]
+
+        # Lấy thông tin mở rộng cho người dùng cụ thể
+    user_meta_data = models.UserMeta.objects.filter(user_id=user_id, meta_key__in=metakeys_to_retrieve)
+
+        # Xây dựng từ điển thông tin mở rộng cho người dùng
+    for meta in user_meta_data:
+        author_info[meta.meta_key] = meta.meta_value
+    return render(request, 'admin/author/edit_auth.html',{'author':author,'author_info':author_info})
+def update_author(request, author_id):
+    # Lấy người dùng cụ thể dựa trên author_id
+    if request.method == 'POST':
+        # Lấy dữ liệu từ biểu mẫu POST
+        auth_id = author_id
+        author = get_object_or_404(models.CustomUser, id=auth_id)
+        # Kiểm tra xác thực và quyền truy cập ở đây (nếu cần)
+        # Ví dụ: if not request.user.has_perm('your_app.change_post'):
+        author.username = request.POST['username']
+        author.display_name = request.POST['display_name']
+        author.first_name = request.POST['first_name']
+        author.last_name = request.POST['last_name']
+
+        # Xử lý hình ảnh đại diện
+        author.save()
+        job = request.POST.get('job')
+        address = request.POST.get('address')
+        phone = request.POST.get('phone')
+        description = request.POST.get('description')
+        # Cập nhật thông tin mở rộng cho người dùng
+        models.UserMeta.objects.update_or_create(
+            user_id=author,
+            meta_key='job',
+            defaults={'meta_value': job}
+        )
+        models.UserMeta.objects.update_or_create(
+            user_id=author,
+            meta_key='address',
+            defaults={'meta_value': address}
+        )
+        models.UserMeta.objects.update_or_create(
+            user_id=author,
+            meta_key='phone',
+            defaults={'meta_value': phone}
+        )
+        models.UserMeta.objects.update_or_create(
+            user_id=author,
+            meta_key='description',
+            defaults={'meta_value': description}
+        )
+        return redirect('author')
+    else:
+        # Tạo form CustomUser với dữ liệu hiện tại của người dùng
+        user_form = forms.UserForm(instance=author)
+        
+        # Tạo form UserMeta với dữ liệu hiện tại của thông tin mở rộng
+    return render(request, 'admin/author/edit_auth.html', {'user_form': user_form})
 
 def widget(request):
     return render(request,'admin/widget/widget.html')

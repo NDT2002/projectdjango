@@ -46,6 +46,8 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    # 'django.middleware.cache.UpdateCacheMiddleware',
+    # 'django.middleware.cache.FetchFromCacheMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -81,14 +83,14 @@ WSGI_APPLICATION = 'gov_news.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'govdaknong',         # Tên cơ sở dữ liệu
-        'USER': 'root',            # Tên người dùng MySQL (thường là "root")
-        'PASSWORD': 'admin1234',        # Mật khẩu MySQL (nếu có)
-        'HOST': 'localhost',          # Địa chỉ host MySQL (thường là localhost
-        # 'USER': 'admin',            
-        # 'PASSWORD': 'RmgmcKkg',        
-        # 'HOST': 'mysql-145222-0.cloudclusters.net',         
-        # 'PORT': '10009'
+        'NAME': 'govdaknong',         #
+        'USER': 'admin',            
+        # 'PASSWORD': 'd4ylsZCy',        
+        # 'HOST': 'mysql-147437-0.cloudclusters.net',         
+        # 'PORT': '19772',
+        'HOST': 'mysql-148480-0.cloudclusters.net',         
+        'PORT': '19193',
+        'PASSWORD': 'jokaGFwO',        
     }
 }
 

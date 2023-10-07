@@ -1,0 +1,146 @@
+{% extends 'admin/base.html' %} {% load static %} {% load i18n admin_urls admin_list %}
+{% block title %}Chi tiết tác giả{% endblock title %}
+{% block contentwrapper %}
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1>Tác giả</h1>
+        </div>
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item active">Auth</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+    <!-- /.container-fluid -->
+  </section>
+
+  <!-- Main content -->
+  <section class="content">
+    <div class="row">
+      <div class="col-12">
+        <div class="card card-primary h-100">
+          <div class="card-header">
+            <h3 class="card-title">Thông tin tài khoản  </h3>
+          </div>
+          {% if form.errors %}
+              <div class="alert alert-danger">
+                  <strong>Có lỗi xảy ra:</strong>
+                  <ul>
+                    {% for field, errors in form.errors.items %}
+                    {% for error in errors %}
+                        <li>{{field }}: {{ error }}</li>
+                    {% endfor %}
+                    {% endfor %}
+                  </ul>
+              </div>
+          {% endif %}
+          <!-- /.card-header -->
+          <!-- form start -->
+          {{author.id}}
+          <form method="post" action="{% url 'update_author' author.id %}">
+            {% csrf_token %}
+            <div class="card-body">
+                <p class="card-text viewInfoUser">Tên đăng nhập: {{ author.username }}</p>
+                <p class="card-text viewInfoUser">Họ và Tên: {{ author.first_name }} {{ author.last_name }}</p>
+                <p class="card-text viewInfoUser">Email: {{ author.email }}</p>
+                <p class="card-text viewInfoUser">Tên hiển thị: {{ author.display_name }}</p>
+              <div class="editInputUser form-group-author row">
+                <label for="username" class='col-sm-2'>Tên đăng nhập</label>
+                <input type="text" class="form-control col-sm-10 " id="username" value="{{ author.username }}"name="username" placeholder="Nhập tên đăng nhập" />
+              </div>
+              <div class="editInputUser form-group-author row">
+                <label for="email" class='col-sm-2'>Email</label>
+                <input type="email" class="form-control col-sm-10" id="email" value="{{ author.email }}" name="email" aria-describedby="emailHelp" placeholder="Nhập địa chỉ email" />
+                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+              </div>
+              <div class="editInputUser form-group-author row">
+                <label for="display_name" class='col-sm-2'>Bút danh</label>
+                <input type="text" class="form-control col-sm-10" id="display_name" value="{{ author.display_name }}" name="display_name" placeholder="Nhập tên hiển thị" />
+              </div>
+              <div class="editInputUser form-group-author row">
+                <label for="last_name" class='col-sm-2'>Họ và Tên</label>
+                  <div class="col-sm-5 px-0">
+                    <input type="text" class="form-control" id="last_name" value="{{ author.last_name }}" name="last_name" placeholder="Nhập họ" />
+                  </div>
+                  <div class="col-sm-5 px-0 pl-sm-2 mt-1 mt-sm-0">
+                    <input type="text" class="form-control" id="first_name" value="{{author.first_name}}" name="first_name" placeholder="Nhập tên" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- /.card-body -->
+        </div>
+      </div>
+      <div class="col-12 px-0">
+        <div class="card card-primary h-100">
+          <div class="card-header">
+            <h3 class="card-title">Thông tin cá nhân </h3>
+          </div>
+            <div class="card-body">
+                <p class="card-text viewInfoUser">Vị trí công tác: {{ author_info.job }}</p>
+                <p class="card-text viewInfoUser">Địa chỉ: {{ author_info.address }}</p>
+                <p class="card-text viewInfoUser">Số điện thoại: {{ author_info.phone }}</p>
+                <p class="card-text viewInfoUser">Mô tả: {{ author_info.description }}</p>
+              <div class="editInputUser form-group-author">
+                <label for="job">Vị trí công tác</label>
+                <input type="text" class="form-control" id="job" name="job" value="{{author_info.job}}" placeholder="Nhập vị trí công tác" />
+              </div>
+              <div class="editInputUser form-group-author">
+                <label for="address">Địa chỉ</label>
+                <input type="text" class="form-control" id="address" name="address" value="{{author_info.address}}" placeholder="Nhập địa chỉ" />
+              </div>
+              <div class="editInputUser form-group-author">
+                <label for="phone">Số điện thoại</label>
+                <input type="phone" class="form-control" id="phone" name="phone" value="{{author_info.phone}}" placeholder="Nhập số điện thoại" />
+              </div>
+              <div class="editInputUser form-group-author">
+                <label for="description">Mô tả</label>
+                <textarea class="form-control" id="description" name="description" rows="3" value="{{author_info.description}}" placeholder="Nhập mô tả"></textarea>
+              </div>
+              <div class="px-3">
+                <button type="button" class="btn btn-warning viewInfoUser" id="editBtnUser">Sửa</button>
+                <button type="button" class="btn btn-danger viewInfoUser" >Xóa vĩnh viễn</button>
+                <button type="button" class="btn btn-secondary editInputUser" id="viewBtnUser">Đóng</button>
+                <button type="submit" id="saveBtn" class="btn btn-primary editInputUser">Lưu</button>
+              </div>
+            </div>
+          </form>
+            <!-- /.card-body -->
+            <!-- /.row -->
+           
+          {% comment %} </form> {% endcomment %}
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+<script src='{% static "js/pages/auth.js" %}'></script>
+<script >
+    $(document).ready(function () {
+        $('.editInputUser').hide();  // Ẩn các trường nhập liệu của CustomUser ban đầu
+    
+        // Xử lý khi nhấn nút "Sửa"
+        $('#editBtnUser').on('click', function () {
+            $('.viewInfoUser').hide(); // Ẩn thông tin hiển thị
+            $('.editInputUser').show(); // Hiển thị các trường nhập liệu
+        });
+    
+        // Xử lý khi nhấn nút "Đóng"
+        $('#viewBtnUser').on('click', function () {
+            $('.viewInfoUser').show(); // Hiển thị thông tin hiển thị
+            $('.editInputUser').hide(); // Ẩn các trường nhập liệu
+        });
+    });
+    
+</script>
+
+
+
+{% endblock contentwrapper %}

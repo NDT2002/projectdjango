@@ -47,10 +47,26 @@
         <div class="row justify-content-center pt-5">
           <div class="col-md-12 login-form" style="width: 90%;">
               <div class="login-image" style="position: absolute;top: -14%;">
+                
                   <img src="{% static 'admin/img/logo.png' %}" alt="Hình ảnh đăng nhập">
               </div>
+              
                 <h2 class="form-title">Đăng Ký</h2>
-                <form>
+                {% if form.errors %}
+              <div class="alert alert-danger">
+                  <strong>Có lỗi xảy ra:</strong>
+                  <ul>
+                    {% for field, errors in form.errors.items %}
+                    {% for error in errors %}
+                        <li>{{field }}: {{ error }}</li>
+                    {% endfor %}
+                    {% endfor %}
+                  </ul>
+              </div>
+          {% endif %}
+                <form method="post" action='{% url "signup" %}'>
+                  {% csrf_token %}
+          {{ form.as_p }}
                     <div  class="row" style="
                     margin-left: 20px;
                 ">
@@ -69,22 +85,28 @@
                        
                         <div class="col-md-6 mb-3">
                             <label for="user_email" class="form-label">Email:</label>
-                            <input type="email" class="form-control" id="user_email" name="user_email" required>
+                            <input type="email" class="form-control" id="user_email" name="email" required>
                         </div>
                         <div class="col-md-6 mb-3">
                             <label for="password" class="form-label">Nhập Lại Mật khẩu:</label>
-                            <input type="password" class="form-control" id="password" name="password" required>
+                            <input type="password" class="form-control" id="password" name="password2" required>
                         </div>
-                        <div class="col-md-6 mb-3">
-                            <label for="date_of_birth" class="form-label">Ngày Sinh:</label>
-                            <input type="date" class="form-control" id="date_of_birth" name="date_of_birth" required>
+                        <div class="col-md-6 mb-3 row">
+                          <div class="col-md-6 mb-3">
+                            <label for="first_name" class="form-label">Họ:</label>
+                            <input type="text" class="form-control" id="first_name" name="first_name" required>
+                          </div>
+                            <div class="col-md-6 mb-3">
+                            <label for="last_name" class="form-label">Tên:</label>
+                            <input type="text" class="form-control" id="last_name" name="last_name" required>
+                          </div>
                         </div>
                     </div>
                     
                     <div class="form-group" style="display: flex; justify-content: center">
-                      <input type="submit" class="login-button" value="{% trans 'Đăng ký' %}"/>
+                      <button type="submit" class="login-button" value="{% trans 'Đăng ký' %}">Đăng ký</button>
                     </div>
-                    <div class="forgot-password"><a href="#">Quên Mật Khẩu?</a> | Bạn đã có Tài Khoản <a href="#">Đăng Nhập Tại Đây</a></div>
+                    <div class="forgot-password"><a href="#">Quên Mật Khẩu?</a> | Bạn đã có Tài Khoản <a href="{% url 'signin'  %}">Đăng Nhập Tại Đây</a></div>
                 </form>
             </div>
         </div>

@@ -90,6 +90,12 @@
     display: inline-block;
     max-height: 8rem;
 }
+@media (max-width:767px) {
+    .post_list_item img{
+    display: inline-block;
+    max-height: none;
+}
+}
 .content-first{
     color: rgb(186, 0, 2);
     text-decoration: none;

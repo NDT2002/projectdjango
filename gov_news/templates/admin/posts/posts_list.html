@@ -17,15 +17,30 @@
       <!-- /.col -->
     </div>
     <div class="overview small-box p-2">
-      Tổng quan:
-      <ul>
-        <li><a href="{% url 'post' %}">{% with total_count=deleted_count.count|add:posts.count %} {{ total_count }} {% endwith %}</a> bài viết</li>
-        <li><a href="{% url 'post_filter' filter='post_status' val='published' %}">{{ published_count.count }}</a> đã xuất bản</li>
-        <li><a href="{% url 'post_filter' filter='post_status' val='pending' %}">{{ pending_count.count }}</a> đang chờ duyệt</li>
-        <li><a href="{% url 'post_filter' filter='post_status' val='draft' %}">{{ draft_count.count }}</a> bản nháp</li>
-        <li><a href="{% url 'post' %}">{{ other_count.count }}</a> bài khác</li>
-        <li><a href="{% url 'post_filter' filter='delete' val='true' %}">{{deleted_count.count}}</a> hủy xuất bản</li>
-      </ul>
+      <div class="card card-primary collapsed-card">
+        <div class="card-header">
+          <div class="card-title">Bộ lọc nhanh</div>
+
+          <div class="card-tools">
+            <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="bi bi-plus"></i>
+            </button>
+          </div>
+          <!-- /.card-tools -->
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body" style="display: none;">
+          <ul>
+            <li><a href="{% url 'post' %}">{% with total_count=deleted_count.count|add:posts.count %} {{ total_count }} {% endwith %}</a> bài viết</li>
+            <li><a href="{% url 'post_filter' filter='post_status' val='published' %}">{{ published_count.count }}</a> đã xuất bản</li>
+            <li><a href="{% url 'post_filter' filter='post_status' val='pending' %}">{{ pending_count.count }}</a> đang chờ duyệt</li>
+            <li><a href="{% url 'post_filter' filter='post_status' val='draft' %}">{{ draft_count.count }}</a> bản nháp</li>
+            <li><a href="{% url 'post' %}">{{ other_count.count }}</a> bài khác</li>
+            <li><a href="{% url 'post_filter' filter='delete' val='true' %}">{{deleted_count.count}}</a> hủy xuất bản</li>
+          </ul>
+        </div>
+        <!-- /.card-body -->
+      </div>
+      <!-- /.card -->
     </div>
     <!-- /.row -->
   </div>

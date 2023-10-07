@@ -58,6 +58,7 @@ class Comment(models.Model):
     class Meta:
         db_table = 'comments'
  
+    @classmethod
     def create_comment(cls, post, author, author_email, content, approved=False, user=None):
         return cls.objects.create(
             post=post,

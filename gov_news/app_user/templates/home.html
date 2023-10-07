@@ -12,56 +12,58 @@
       <ul class="row m-0 sidebar-list text-md-center text-lg-left">
         <li class="top-menu-item">
           <div class="btn-group dropright">
-            <a href="#"> Tài liệu pbgdpl </a>
+            <a href="{% url 'news_term_list' 'tai-lieu-pbgdpl' %}"> Tài liệu pbgdpl </a>
           </div>
         </li>
         <li class="top-menu-item">
           <div class="btn-group dropright">
-            <a href="#"> Truyền thông chính sách </a>
+            <a href="{% url 'news_term_list' 'truyen-thong-chinh-sach' %}"> Truyền thông chính sách </a>
           </div>
         </li>
         <li class="top-menu-item">
           <div class="btn-group dropright">
-            <a href="#"> Thông tin chỉ đạo điều hành </a>
+            <a href="{% url 'news_term_list' 'thong-tin-chi-dao-dieu-hanh' %}"> Thông tin chỉ đạo điều hành </a>
           </div>
         </li>
         <li class="top-menu-item">
           <div class="btn-group dropright">
-            <a href="#"> Hội đồng phối hợp PBGDPL </a>
+            <a href="{% url 'news_term_list' 'hoi-dong-phoi-hop-pbgdpl' %}"> Hội đồng phối hợp PBGDPL </a>
           </div>
         </li>
         <li class="top-menu-item">
           <div class="btn-group dropright">
-            <a class="dropright" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Hướng dẫn nghiệp vụ </a>
+            <a class="dropright" href="{% url 'news_term_list' 'huong-dan-nghiep-vu' %}" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Hướng dẫn nghiệp vụ
+            </a>
             <div class="dropdown-menu drop-setting" aria-labelledby="dropdownMenuLink">
-              <a class="dropdown-item" href="#">Hướng dẫn nghiệp vụ trung ương</a>
+              <a class="dropdown-item" href="{% url 'news_term_list' 'huong-dan-nghiep-vu-trung-uong' %}">Hướng dẫn nghiệp vụ trung ương</a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">Hướng dẫn nghiệp vụ địa phương</a>
+              <a class="dropdown-item" href="{% url 'news_term_list' 'huong-dan-nghiep-vu-dia-phuong'  %}">Hướng dẫn nghiệp vụ địa phương</a>
             </div>
           </div>
         </li>
         <li class="top-menu-item">
           <div class="btn-group dropright">
-            <a href="#"> Nghiên cứu trao đổi </a>
+            <a href="{% url 'news_term_list' 'nghien-cuu-trao-doi' %}"> Nghiên cứu trao đổi </a>
           </div>
         </li>
         <li class="top-menu-item">
           <div class="btn-group dropright">
-            <a href="#"> Hoà giải ở cơ sở </a>
+            <a href="{% url 'news_term_list' 'hoa-giai-o-co-so' %}"> Hoà giải ở cơ sở </a>
           </div>
         </li>
         <li class="top-menu-item">
           <div class="btn-group dropright">
-            <a href="#"> Tiếp cận pháp luật </a>
+            <a href="{% url 'news_term_list' 'tiep-can-phap-luat' %}"> Tiếp cận pháp luật </a>
           </div>
         </li>
         <li class="top-menu-item">
           <div class="btn-group dropright">
             <a class="dropright" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Hỏi đáp tư vấn pháp luật </a>
             <div class="dropdown-menu drop-setting" aria-labelledby="dropdownMenuLink">
-              <a class="dropdown-item" href="#">Hỏi đáp tư vấn pháp luật trung ương</a>
+              <a class="dropdown-item" href="{% url 'news_term_list' 'hoi-dap-tu-van-phap-luat-trung-uong' %}">Hỏi đáp tư vấn pháp luật trung ương</a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">Hỏi đáp tư vấn pháp luật địa phương</a>
+              <a class="dropdown-item" href="{% url 'news_term_list' 'hoi-dap-tu-van-phap-luat-dia-phuong' %}">Hỏi đáp tư vấn pháp luật địa phương</a>
             </div>
           </div>
         </li>
@@ -71,15 +73,15 @@
     <div class="col-12 col-md-6 col-lg-5 carousel-top">
       <div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">
         <div class="carousel-inner">
-          <div class="carousel-item active">
+          <a href='{% url "news_detail" 1 %}' class="carousel-item active">
             <img src="{% static 'user/img/carousel1.png' %}" class="d-block" alt="img carousel" />
-          </div>
-          <div class="carousel-item">
+          </a>
+          <a href='{% url "news_detail" 2 %}' class="carousel-item">
             <img src="{% static 'user/img/carousel2.jpg' %}" class="d-block" alt="img carousel" />
-          </div>
-          <div class="carousel-item">
+          </a>
+          <a href='{% url "news_detail" 3 %}' class="carousel-item">
             <img src="{% static 'user/img/carousel3.jpg' %}" class="d-block" alt="img carousel" />
-          </div>
+          </a>
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -93,37 +95,15 @@
     </div>
     <div class="col-12 col-md-6 col-lg-4 hot-news">
       <div class="title-top">
-        <p>Tin nổi bật</p>
+        <a class="text-white text-uppercase fs-5" href='{% url "news_tag_list" "tin nổi bật" %}'>Tin nổi bật</a>
       </div>
       <div class="top-news overflow-auto">
         <ul class="h6">
+          {% for news in hot_news %}
           <li>
-            <a class="" href="#"><i class="bi bi-arrow-right-circle-fill m-1"></i>Truyền thông chính sách: Một số điểm mới của Dự án Luật Công chứng (sửa đổi)</a>
+            <a class="" href="{% url 'news_detail' news.id %}"><i class="bi bi-arrow-right-circle-fill m-1"></i>{{news.post_excerpt}}</a>
           </li>
-          <li>
-            <a class="" href="#"><i class="bi bi-arrow-right-circle-fill m-1"></i>Triển khai thực hiện liên thông điện tử đối với 02 nhóm thủ tục hành chính</a>
-          </li>
-          <li>
-            <a class="" href="#"><i class="bi bi-arrow-right-circle-fill m-1"></i>Hội Nông dân tỉnh Đắk Nông: RA MẮT CÂU LẠC BỘ “NÔNG DÂN VỚI PHÁP LUẬT” TẠI THỊ TRẤN EAT'LING</a>
-          </li>
-          <li>
-            <a class="" href="#"><i class="bi bi-arrow-right-circle-fill m-1"></i>Truyền thông chính sách: Một số điểm mới của Dự án Luật Công chứng (sửa đổi)</a>
-          </li>
-          <li>
-            <a class="" href="#"><i class="bi bi-arrow-right-circle-fill m-1"></i>Triển khai thực hiện liên thông điện tử đối với 02 nhóm thủ tục hành chính</a>
-          </li>
-          <li>
-            <a class="" href="#"><i class="bi bi-arrow-right-circle-fill m-1"></i>Hội Nông dân tỉnh Đắk Nông: RA MẮT CÂU LẠC BỘ “NÔNG DÂN VỚI PHÁP LUẬT” TẠI THỊ TRẤN EAT'LING</a>
-          </li>
-          <li>
-            <a class="" href="#"><i class="bi bi-arrow-right-circle-fill m-1"></i>Truyền thông chính sách: Một số điểm mới của Dự án Luật Công chứng (sửa đổi)</a>
-          </li>
-          <li>
-            <a class="" href="#"><i class="bi bi-arrow-right-circle-fill m-1"></i>Triển khai thực hiện liên thông điện tử đối với 02 nhóm thủ tục hành chính</a>
-          </li>
-          <li>
-            <a class="" href="#"><i class="bi bi-arrow-right-circle-fill m-1"></i>Hội Nông dân tỉnh Đắk Nông: RA MẮT CÂU LẠC BỘ “NÔNG DÂN VỚI PHÁP LUẬT” TẠI THỊ TRẤN EAT'LING</a>
-          </li>
+          {% endfor %}
         </ul>
       </div>
     </div>
@@ -131,48 +111,22 @@
   <div class="col-md-9 p-0 mt-1">
     <div class="news m-0">
       <div class="news-main">
-        <p class="title-top text-uppercase text-white font-weight-bold bg- p-1 mb-0">Hoạt động</p>
+        <p class="title-top text-uppercase text-white fs-5 p-1 mb-0"><a href='{% url "news_tag_list" "hoạt động"  %}' class="text-white">Hoạt động</a></p>
         <div class="container text-center my-3">
-          <div class=" mx-auto my-auto justify-content-center">
+          <div class="mx-auto my-auto justify-content-center">
             <div id="recipeCarousel" class="carousel carousel-menu slide" data-bs-ride="carousel">
-              <div class="carousel-inner " role="listbox">
-                <div class="carousel-item active ">
+              <div class="carousel-inner" role="listbox">
+                <div class="carousel-item active">
                   <div class="col-lg-3 col-md-4 col-sm-6 col-12">
                     <div class="card">
                       <div class="card-img">
-                        <img src="//via.placeholder.com/500x400/31f?text=1" class="img-fluid" />
+                        {% if actions.1.post_image %}
+                        <img class="img-fluid" style="width: 100%; height: 100%" src="{{ actions.1.post_image.url }}" alt="Featured Image" />
+                        {% else %}
+                        <img class="img-fluid" style="width: 100%; height: 100%" src=" " alt="Featured Image" />
+                        {% endif %}
                       </div>
-                      <div class="card-img-overlay">Slide 1</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="carousel-item ">
-                  <div class="col-lg-3 col-md-4 col-sm-6 col-12">
-                    <div class="card">
-                      <div class="card-img">
-                        <img src="//via.placeholder.com/500x400/e66?text=2" class="img-fluid" />
-                      </div>
-                      <div class="card-img-overlay">Slide 2</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="carousel-item ">
-                  <div class="col-lg-3 col-md-4 col-sm-6 col-12 ">
-                    <div class="card">
-                      <div class="card-img">
-                        <img src="//via.placeholder.com/500x400/7d2?text=3" class="img-fluid" />
-                      </div>
-                      <div class="card-img-overlay">Slide 3</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="carousel-item">
-                  <div class="col-lg-3 col-md-4 col-sm-6 col-12 ">
-                    <div class="card">
-                      <div class="card-img">
-                        <img src="//via.placeholder.com/500x400?text=4" class="img-fluid" />
-                      </div>
-                      <div class="card-img-overlay">Slide 4</div>
+                      <a href='{% url "news_detail" actions.1.id %}' class="card-img-overlay text-truncate">{{actions.1.post_title}}</a>
                     </div>
                   </div>
                 </div>
@@ -180,9 +134,13 @@
                   <div class="col-lg-3 col-md-4 col-sm-6 col-12">
                     <div class="card">
                       <div class="card-img">
-                        <img src="//via.placeholder.com/500x400/aba?text=5" class="img-fluid" />
+                        {% if actions.2.post_image %}
+                        <img class="img-fluid" style="width: 100%; height: 100%" src="{{ actions.2.post_image.url }}" alt="Featured Image" />
+                        {% else %}
+                        <img class="img-fluid" style="width: 100%; height: 100%" src=" " alt="Featured Image" />
+                        {% endif %}
                       </div>
-                      <div class="card-img-overlay">Slide 5</div>
+                      <a href='{% url "news_detail" actions.2.id %}' class="card-img-overlay text-truncate">{{actions.2.post_title}}</a>
                     </div>
                   </div>
                 </div>
@@ -190,9 +148,57 @@
                   <div class="col-lg-3 col-md-4 col-sm-6 col-12">
                     <div class="card">
                       <div class="card-img">
-                        <img src="//via.placeholder.com/500x400/fc0?text=6" class="img-fluid" />
+                        {% if actions.3.post_image %}
+                        <img class="img-fluid" style="width: 100%; height: 100%" src="{{ actions.3.post_image.url }}" alt="Featured Image" />
+                        {% else %}
+                        <img class="img-fluid" style="width: 100%; height: 100%" src=" " alt="Featured Image" />
+                        {% endif %}
                       </div>
-                      <div class="card-img-overlay">Slide 6</div>
+                      <a href='{% url "news_detail" actions.3.id %}' class="card-img-overlay text-truncate">{{actions.3.post_title}}</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+                    <div class="card">
+                      <div class="card">
+                        <div class="card-img">
+                          {% if actions.4.post_image %}
+                          <img class="img-fluid" style="width: 100%; height: 100%" src="{{ actions.4.post_image.url }}" alt="Featured Image" />
+                          {% else %}
+                          <img class="img-fluid" style="width: 100%; height: 100%" src=" " alt="Featured Image" />
+                          {% endif %}
+                        </div>
+                        <a href='{% url "news_detail" actions.4.id %}' class="card-img-overlay text-truncate">{{actions.4.post_title}}</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+                    <div class="card">
+                      <div class="card-img">
+                        {% if actions.5.post_image %}
+                        <img class="img-fluid" style="width: 100%; height: 100%" src="{{ actions.5.post_image.url }}" alt="Featured Image" />
+                        {% else %}
+                        <img class="img-fluid" style="width: 100%; height: 100%" src=" " alt="Featured Image" />
+                        {% endif %}
+                      </div>
+                      <a href='{% url "news_detail" actions.5.id %}' class="card-img-overlay text-truncate">{{actions.5.post_title}}</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+                    <div class="card">
+                      <div class="card-img">
+                        {% if actions.0.post_image %}
+                        <img class="img-fluid" style="width: 100%; height: 100%" src="{{ actions.0.post_image.url }}" alt="Featured Image" />
+                        {% else %}
+                        <img class="img-fluid" style="width: 100%; height: 100%" src=" " alt="Featured Image" />
+                        {% endif %}
+                      </div>
+                      <a href='{% url "news_detail" actions.0.id %}' class="card-img-overlay text-truncate">{{actions.0.post_title}}</a>
                     </div>
                   </div>
                 </div>
@@ -208,35 +214,33 @@
         </div>
         {% comment %} đây là code multi items {% endcomment %}
       </div>
+      {% comment %} {{posts_in_categories}} {% endcomment %} 
       <div class="blog-box mt-2">
         <div class="row m-0">
+          {%  for category, posts in posts_in_categories.items  %}
+          {{ posts_in_categories.category}}
           <div class="col-md-6 p-0 mb-4 shadow-sm">
             <div class="card w-100 h-auto">
               <div class="card-header text-center">
-                <h6 class="title-top card-title text-justify bg-primary text-light p-2 w-100"><a class="link text-white" href="{% url 'news_list'  %}">HOẠT ĐỘNG PBGDPL Ở ĐỊA PHƯƠNG</a></h6>
+                <h6 class="title-top card-title text-justify bg-primary text-light p-2 w-100">
+                  <a class="link text-white text-uppercase" href="{% url 'news_term_list' category.slug  %}">{{category.name}}</a>
+                </h6>
                 <a href="{% url 'news_list'  %}"><img src="{% static 'user/img/carousel1.png'  %}" class="img-thumbnail w-100 mx-auto" alt="Image 1" /></a>
               </div>
               <div class="card-body h-auto card-blog">
-                <h6 class="title">HỘI NÔNG DÂN TỈNH ĐẮK NÔNG: RA MẮT CÂU LẠC BỘ “NÔNG DÂN VỚI PHÁP LUẬT” TẠI THỊ TRẤN EAT'LING</h6>
+                <h6 class="title">{{category.description}}</h6>
                 <ul class="list-group list-group-flush">
+                  {% for post in posts %}
                   <li class="list-group-item pl-0 text-justify text-truncate">
-                    <a class="text-black" href="">Đắk Glong: Tổ chức Hội nghị phổ biến một số Luật mới ban hành</a>
+                    <a class="text-black" href="{% url 'news_detail' post.id %}">{{ post.post_title }}</a>
                   </li>
-                  <li class="list-group-item pl-0 text-justify text-truncate">
-                    <a class="text-black" href="">UBND Thành Phố Gia Nghĩa: Tổ Chức Hội Nghị Triển Khai, Phổ Biến Các Luật Mới Ban Hành</a>
-                  </li>
-                  <li class="list-group-item pl-0 text-justify text-truncate"><a class="text-black" href="">Tuyên truyền, phổ biến, giáo dục pháp luật tại huyện Đắk Mil </a></li>
-                  <li class="list-group-item pl-0 text-justify text-truncate">
-                    <a class="text-black" href="">Đắk Glong: Phối hợp tổ chức chương trình tuyên truyền phổ biến pháp luật và an toàn giao thông học đường tại huyện</a>
-                  </li>
-                  <li class="list-group-item pl-0 text-justify text-truncate">
-                    <a class="text-black" href="">Ban hành Kế hoạch hoạt động của Hội đồng phối hợp phổ biến, giáo dục pháp luật tỉnh Đắk Nông năm 2023</a>
-                  </li>
+                {% endfor %}
                 </ul>
-                <a href="{% url 'news_list'  %}" class="btn btn-danger float-right">Xem thêm>></a>
+                <a href="{% url 'news_term_list' category.slug %}" class="btn btn-danger float-right">Xem thêm>></a>
               </div>
             </div>
           </div>
+          {% endfor %} {% comment %}
           <div class="col-md-6 p-0 mb-4 shadow-sm">
             <div class="card w-100 h-auto">
               <div class="card-header text-center">
@@ -300,6 +304,7 @@
               </div>
             </div>
           </div>
+          {% endcomment %}
           <!-- Add more blog cards here -->
         </div>
       </div>
@@ -344,6 +349,7 @@
         <a href="#">Xem tất cả >></a>
       </div>
       <div class="video-card">
+        {% comment %}
         <iframe
           src="https://www.youtube.com/embed/gOiltxSoOoQ"
           title="YouTube video player"
@@ -351,6 +357,7 @@
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           allowfullscreen
         ></iframe>
+        {% endcomment %}
       </div>
     </div>
     <div class="image">
