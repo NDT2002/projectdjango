@@ -44,6 +44,49 @@
   </footer>
   <!-- Bootstrap JavaScript Libraries -->
   {% include "include_app/base_scripts.html" %}
+  <div id="scrolltop">
+    <a class="top-button" href="#top">&uarr;</a>
+  </div>
+  <style>html {
+    scroll-behavior: smooth;
+  }
+  
+  #scrolltop {
+    display: block;
+    visibility: visible;
+    opacity: 1;
+    transition: visibility 0s, opacity 0.5s ease-in;
+    position:fixed;
+    bottom:20px;
+    right:20px;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+  }
+  
+  .top-button {
+    text-decoration: none;
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 1.5;
+    cursor: pointer;
+    padding: 12px;
+    color: #222;
+  }
+
+  </style>
+  <script>
+    const scrollTop = document.getElementById('scrolltop')
+window.onscroll = () => {
+  if (window.scrollY > 0) {
+    scrollTop.style.visibility = "visible";
+    scrollTop.style.opacity = 1;
+  } else {
+    scrollTop.style.visibility = "hidden";
+    scrollTop.style.opacity = 0;
+  }
+};
+
+  </script>
 </body>
 
 </html>

@@ -36,6 +36,7 @@ urlpatterns = [
     path("tu-khoa/<int:tag_id>/delete/", login_required(views.delete_tag), name="delete_tag"),
     path('tu-khoa/<int:tag_id>/restore/', login_required(views.restore_tag), name='restore_tag'),
 
+    path('tuy-chon/menu', login_required(views.restore_tag), name='restore_tag'),
     path("giao-dien/widget/", login_required(views.widget), name="widget"),
     path("giao-dien/widget/create", login_required(views.create_widget), name="create_widget"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

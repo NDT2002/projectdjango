@@ -61,8 +61,8 @@
               <p>Quản lý Chuyên mục</p>
             </a>
           </li>
-          <li class="nav-item has-treeview {% if request.resolver_match.url_name == 'create_auth' or request.resolver_match.url_name == 'auth_list' %}menu-open{% endif %}">
-            <a href="" class="nav-link {% if request.resolver_match.url_name == 'create_auth' or request.resolver_match.url_name == 'auth_list' %}active{% endif %}">
+          <li class="nav-item has-treeview {% if request.resolver_match.url_name == 'create_author' or request.resolver_match.url_name == 'author' %}menu-open{% endif %}">
+            <a href="" class="nav-link {% if request.resolver_match.url_name == 'create_author' or request.resolver_match.url_name == 'author' %}active{% endif %}">
               <i class="nav-icon bi bi-person-vcard"></i>
               <p>
                 Quản lý Tác giả
@@ -70,7 +70,7 @@
               </p>
             </a>
             <ul class="nav nav-treeview">
-              <li class="nav-item {% if request.resolver_match.url_name == 'create_auth' %}active{% endif %}">
+              <li class="nav-item {% if request.resolver_match.url_name == 'create_author' %}active{% endif %}">
                 <a href="{% url 'create_author' %}" class="nav-link {% if request.resolver_match.url_name == 'create_author' %}active{% endif %}">
                   <i class="bi bi-person-plus nav-icon"></i>
                   <p>Thêm tác giả</p>

@@ -1,0 +1,13 @@
+{
+    "builds": [{
+        "src": "gov_news/wsgi.py",
+        "use": "@vercel/python",
+        "config": { "maxLambdaSize": "15mb", "runtime": "python3.10" }
+    }],
+    "routes": [
+        {
+            "src": "/(.*)",
+            "dest": "gov_news/wsgi.py"
+        }
+    ]
+}

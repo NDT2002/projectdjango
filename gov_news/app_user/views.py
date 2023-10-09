@@ -12,13 +12,13 @@ def home(request):
     all_categories = models.Term.objects.filter(termrelationship__isnull=False).distinct()
 
     # Lấy ngẫu nhiên 4 danh mục từ tất cả danh mục
-    random_categories = sample(list(all_categories), 4)
+    random_categories = sample(list(all_categories), 6)
 
     posts_in_categories = {}
     for category in random_categories:
         term_relationships = models.TermRelationship.objects.filter(term=category)
         post_ids = term_relationships.values_list('post_id', flat=True)
-        posts = models.Post.objects.filter(id__in=post_ids).order_by('?')[:2]
+        posts = models.Post.objects.filter(id__in=post_ids).order_by('?')[:4]
         posts_in_categories[category] = posts
     hot_news = models.Post.objects.filter(tagrelationship__tag__name='tin nổi bật')[:4]
     action_news = models.Post.objects.filter(tagrelationship__tag__name='hoạt động')[:6]
